@@ -1,0 +1,263 @@
+﻿<UserControl
+    x:Class="Panacea.Modules.UserAccount.Views.LoginControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Panacea.Modules.UserAccount.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:multilinguality="clr-namespace:Panacea.Multilinguality;assembly=Panacea.Multilinguality"
+    xmlns:pcontrols="clr-namespace:Panacea.Controls;assembly=Panacea.Controls"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    Background="White"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary>
+
+            <Style TargetType="{x:Type TabControl}">
+                <Setter Property="OverridesDefaultStyle" Value="True" />
+                <Setter Property="SnapsToDevicePixels" Value="True" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type TabControl}">
+                            <Grid KeyboardNavigation.TabNavigation="Local">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Grid Background="#12a5f7">
+                                    <TabPanel
+                                        Name="HeaderPanel"
+                                        Grid.Row="0"
+                                        Margin="0"
+                                        Panel.ZIndex="1"
+                                        IsItemsHost="True"
+                                        KeyboardNavigation.TabIndex="1" />
+                                </Grid>
+                                <Border
+                                    Name="Border"
+                                    Grid.Row="1"
+                                    Background="White"
+                                    BorderBrush="Transparent"
+                                    BorderThickness="1"
+                                    CornerRadius="2"
+                                    KeyboardNavigation.DirectionalNavigation="Contained"
+                                    KeyboardNavigation.TabIndex="2"
+                                    KeyboardNavigation.TabNavigation="Local">
+                                    <ContentPresenter
+                                        Name="PART_SelectedContentHost"
+                                        Margin="4"
+                                        ContentSource="SelectedContent" />
+                                </Border>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <Setter Property="Foreground" Value="Gray" />
+                                    <Setter TargetName="Border" Property="BorderBrush" Value="Transparent" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+
+            <Style TargetType="TabItem">
+                <Setter Property="FontSize" Value="{DynamicResource FontSize-Large}" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="TabItem">
+                            <Grid Name="Panel" HorizontalAlignment="Center">
+                                <ContentPresenter
+                                    x:Name="ContentSite"
+                                    Margin="20"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    pcontrols:Material.RelativeFontSizeRatio="1.0"
+                                    ContentSource="Header" />
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter TargetName="Panel" Property="Background" Value="White" />
+                                </Trigger>
+                                <Trigger Property="IsSelected" Value="False">
+                                    <Setter TargetName="Panel" Property="Background" Value="#12a5f7" />
+                                    <Setter Property="Foreground" Value="White" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid VerticalAlignment="Stretch">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+
+        <TabControl
+            Name="tabs"
+            Grid.IsSharedSizeScope="true"
+            SelectedIndex="0"
+            SelectionChanged="TabControl_SelectionChanged">
+            <TabControl.Resources>
+                <Style TargetType="{x:Type TabPanel}">
+                    <Setter Property="HorizontalAlignment" Value="Center" />
+
+                </Style>
+            </TabControl.Resources>
+            <TabItem Name="DobTab" Header="{multilinguality:Translate 'Sign in with your date of birth', 'core'}">
+                <Grid VerticalAlignment="Top">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="1*" />
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel
+                        Grid.Column="1"
+                        Margin="20"
+                        VerticalAlignment="Center">
+
+
+                        <TextBox
+                            Name="txtdob"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center"
+                            pcontrols:Material.Label="{multilinguality:Translate 'Date of Birth',
+                                                                                 'core'}"
+                            pcontrols:Material.RelativeFontSizeRatio="1.1"
+                            FontWeight="Light"
+                            IsReadOnly="True" />
+
+
+
+                        <PasswordBox
+                            Name="passdob"
+                            VerticalContentAlignment="Center"
+                            pcontrols:Material.Label="{multilinguality:Translate 'Password',
+                                                                                 'core'}"
+                            pcontrols:Material.RelativeFontSizeRatio="1.1" />
+
+
+                        <Button
+                            Name="btnLogindob"
+                            Margin="0,20,0,0"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            pcontrols:Material.RelativeFontSizeRatio="1.1"
+                            Command="{Binding LoginWithDateCommand}"
+                            CommandParameter="{Binding ElementName=passdob}"
+                            Content="{multilinguality:Translate 'Sign in',
+                                                                'core'}"
+                            Style="{DynamicResource PrimaryButton}" />
+
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+            <TabItem Name="EmailTab" Header="{multilinguality:Translate 'Sign in with your credentials', 'core'}">
+                <Grid Width="auto" VerticalAlignment="Top">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="1*" />
+                    </Grid.ColumnDefinitions>
+
+
+                    <StackPanel
+                        Grid.Column="1"
+                        Margin="20"
+                        VerticalAlignment="Stretch">
+
+                        <TextBox
+                            Name="userid"
+                            VerticalContentAlignment="Center"
+                            pcontrols:Material.Label="{multilinguality:Translate 'Email',
+                                                                                 'core'}"
+                            pcontrols:Material.RelativeFontSizeRatio="1.1"
+                            Text="{Binding Email}" />
+
+
+
+
+                        <PasswordBox
+                            Name="pass"
+                            Grid.Row="1"
+                            VerticalContentAlignment="Center"
+                            pcontrols:Material.Label="{multilinguality:Translate 'Password',
+                                                                                 'core'}"
+                            pcontrols:Material.RelativeFontSizeRatio="1.1" />
+                        <Button
+                            Name="btnLogin"
+                            Grid.Column="1"
+                            Margin="0,20,0,0"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            pcontrols:Material.RelativeFontSizeRatio="1.1"
+                            Command="{Binding LoginWithEmailCommand}"
+                            CommandParameter="{Binding ElementName=pass}"
+                            Content="{multilinguality:Translate 'Sign in',
+                                                                'core'}"
+                            Style="{DynamicResource PrimaryButton}" />
+                    </StackPanel>
+
+                </Grid>
+            </TabItem>
+
+            <TabItem
+                Name="CardLoginItem"
+                Header="{multilinguality:Translate 'Sign in using your card',
+                                                   'core'}"
+                Visibility="Collapsed">
+                <Grid
+                    Name="cardPanel"
+                    Height="{Binding ElementName=heightGrid, Path=ActualHeight}"
+                    VerticalAlignment="Top">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <TextBlock
+                        Name="cardid"
+                        Margin="20"
+                        pcontrols:Material.RelativeFontSizeRatio="1.1"
+                        Text="{multilinguality:Translate 'tap your card to sign in',
+                                                         'core'}"
+                        TextAlignment="Center"
+                        TextWrapping="Wrap" />
+                    <Image
+                        Name="cardimg"
+                        Grid.Row="1"
+                        MaxWidth="300"
+                        Margin="20"
+                        Source="pack://application:,,,/Panacea;component/Resources/Images/Icons/tapcard.png" />
+
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <TextBlock
+            Grid.Row="1"
+            Margin="5"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Bottom">
+            <Hyperlink Name="register" Command="{Binding RegisterCommand}">
+                <TextBlock pcontrols:Material.RelativeFontSizeRatio="1.0" Text="{multilinguality:Translate 'If you do not have an account, click here to register', 'core'}" />
+            </Hyperlink>
+        </TextBlock>
+        <TextBlock
+            Grid.Row="2"
+            Margin="5"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Bottom">
+            <Hyperlink Name="forgotPass" Command="{Binding ForgotPasswordCommand}">
+                <TextBlock pcontrols:Material.RelativeFontSizeRatio="1.0" Text="{multilinguality:Translate 'Forgot my passcode', 'core'}" />
+            </Hyperlink>
+        </TextBlock>
+    </Grid>
+</UserControl>
