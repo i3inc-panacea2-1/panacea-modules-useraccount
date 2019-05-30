@@ -152,7 +152,7 @@
                             HorizontalAlignment="Right"
                             VerticalAlignment="Center"
                             pcontrols:Material.RelativeFontSizeRatio="1.1"
-                            Command="{Binding LoginWithDateCommand}"
+                            pcontrols:Material.AsyncCommand="{Binding LoginWithDateCommand}"
                             CommandParameter="{Binding ElementName=passdob}"
                             Content="{multilinguality:Translate 'Sign in',
                                                                 'core'}"
@@ -200,7 +200,7 @@
                             HorizontalAlignment="Right"
                             VerticalAlignment="Center"
                             pcontrols:Material.RelativeFontSizeRatio="1.1"
-                            Command="{Binding LoginWithEmailCommand}"
+                            pcontrols:Material.AsyncCommand="{Binding LoginWithEmailCommand}"
                             CommandParameter="{Binding ElementName=pass}"
                             Content="{multilinguality:Translate 'Sign in',
                                                                 'core'}"

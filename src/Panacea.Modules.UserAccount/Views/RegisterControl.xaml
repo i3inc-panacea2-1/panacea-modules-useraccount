@@ -1,0 +1,159 @@
+﻿<UserControl
+    x:Class="Panacea.Modules.UserAccount.Views.RegisterControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:Panacea.Controls;assembly=Panacea.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Panacea.Modules.UserAccount.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:multilinguality="clr-namespace:Panacea.Multilinguality;assembly=Panacea.Multilinguality"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    Background="white"
+    mc:Ignorable="d">
+    <Grid controls:Material.RelativeFontSizeRatio="1.0">
+        <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible">
+            <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Top">
+                <TextBlock
+                    Margin="20,20,20,10"
+                    controls:Material.RelativeFontSizeRatio="1.1"
+                    Text="{multilinguality:Translate 'Please fill your personal information',
+                                                     'core'}"
+                    TextAlignment="Center" />
+                <Grid Margin="10" VerticalAlignment="Top">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="3*" />
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="1*" />
+
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <TextBox
+                            Name="firstName"
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Margin="0,0,2,0"
+                            VerticalContentAlignment="Center"
+                            controls:Material.Label="{multilinguality:Translate 'First Name',
+                                                                                'core'}"
+                            MaxLength="30"
+                            Text="{Binding FirstName}" />
+                        <TextBox
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Margin="2,0,0,0"
+                            VerticalContentAlignment="Center"
+                            controls:Material.Label="{multilinguality:Translate 'Last Name',
+                                                                                'core'}"
+                            MaxLength="30"
+                            Text="{Binding LastName}" />
+
+
+                    </Grid>
+
+                    <TextBox
+                        Grid.Row="0"
+                        Grid.Column="2"
+                        Margin="20,0,0,0"
+                        VerticalAlignment="Center"
+                        controls:Material.Label="{multilinguality:Translate 'Date of birth',
+                                                                            'core'}"
+                        IsReadOnly="True"
+                        Text="{Binding DateOfBirth}" />
+
+
+                    <ComboBox
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Margin="3,0"
+                        VerticalContentAlignment="Center"
+                        controls:Material.Label="{multilinguality:Translate 'Security question',
+                                                                            'core'}"
+                        ItemsSource="{Binding Questions}"
+                        SelectedItem="{Binding Question}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Question}" />
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+
+                    <TextBox
+                        Grid.Row="1"
+                        Grid.Column="2"
+                        Margin="20,0"
+                        VerticalContentAlignment="Center"
+                        controls:Material.Label="{multilinguality:Translate 'Security answer',
+                                                                            'core'}"
+                        MaxLength="30"
+                        Text="{Binding Answer}" />
+
+                    <TextBox
+                        Grid.Row="2"
+                        Grid.Column="1"
+                        Margin="3,0,0,0"
+                        VerticalContentAlignment="Center"
+                        controls:Material.Label="{multilinguality:Translate 'Telephone (optional)',
+                                                                            'core'}"
+                        MaxLength="15"
+                        Text="{Binding PhoneNumber}" />
+                    <TextBox
+                        Name="email"
+                        Grid.Row="2"
+                        Grid.Column="2"
+                        Margin="20,0,0,0"
+                        VerticalContentAlignment="Center"
+                        controls:Material.Label="{multilinguality:Translate 'Email (optional)',
+                                                                            'core'}"
+                        MaxLength="80" />
+                    <Button
+                        Grid.Row="3"
+                        Grid.Column="2"
+                        HorizontalAlignment="Right"
+                        controls:Material.AsyncCommand="{Binding RegisterCommand}"
+                        Content="{multilinguality:Translate 'Register',
+                                                            'UserAccount'}"
+                        Style="{DynamicResource PrimaryButton}" />
+                    <StackPanel
+                        Name="cardPanel"
+                        Grid.Row="3"
+                        Grid.RowSpan="3"
+                        Grid.Column="1"
+                        VerticalAlignment="Center">
+                        <TextBlock
+                            Margin="10"
+                            Text="{multilinguality:Translate 'Please tap your hospital card now!',
+                                                             'core'}"
+                            TextAlignment="Left"
+                            TextWrapping="Wrap"
+                            Visibility="Collapsed" />
+
+                        <TextBlock Margin="3,10,0,0" TextAlignment="Left">
+                            <TextBlock.Inlines>
+                                <Run Text="{multilinguality:Translate 'Already a user?', 'core'}" />
+                                <Hyperlink Command="{Binding LoginCommand}">
+                                    <TextBlock Text="{multilinguality:Translate 'Sign in', 'core'}" />
+                                </Hyperlink>
+                            </TextBlock.Inlines>
+                        </TextBlock>
+                    </StackPanel>
+                </Grid>
+
+
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

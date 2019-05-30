@@ -1,6 +1,7 @@
 ﻿using Panacea.Controls;
 using Panacea.Core;
 using Panacea.Modularity.UiManager;
+using Panacea.Modularity.UserAccount;
 using Panacea.Modules.UserAccount.Views;
 using Panacea.Mvvm;
 using System;
@@ -17,9 +18,9 @@ namespace Panacea.Modules.UserAccount.ViewModels
     [View(typeof(LoginControl))]
     class LoginViewModel : ViewModelBase
     {
-        private bool _signingIn;
+        private bool _watingForAnotherTask;
 
-        public LoginViewModel(PanaceaServices core, TaskCompletionSource<bool> source)
+        public LoginViewModel(IUserAccountManager manager, PanaceaServices core, TaskCompletionSource<bool> source)
         {
             _core = core;
             _source = source;
@@ -27,11 +28,15 @@ namespace Panacea.Modules.UserAccount.ViewModels
             {
                 Email = "v.a@dotbydot.gr";
             }
-            LoginWithDateCommand = new RelayCommand(async arg =>
+            RegisterCommand = new RelayCommand(async arg =>
+            {
+                _watingForAnotherTask = true;
+                source.SetResult(await manager.RegisterAsync());
+            });
+            LoginWithDateCommand = new AsyncCommand(async arg =>
             {
                 try
                 {
-                    _signingIn = true;
                     var password = (arg as PasswordBox).Password;
                     if (string.IsNullOrEmpty(Date))
                     {
@@ -58,18 +63,17 @@ namespace Panacea.Modules.UserAccount.ViewModels
                 }
                 finally
                 {
-                    _signingIn = false;
+                    
                 }
 
             });
-            LoginWithEmailCommand = new RelayCommand(async arg =>
+            LoginWithEmailCommand = new AsyncCommand(async arg =>
             {
                 try
                 {
 
                     var password = (arg as PasswordBox).Password;
-                    _signingIn = true;
-
+                   
                     if (string.IsNullOrEmpty(Email))
                     {
                         ShowWarning("Please provide an email");
@@ -105,14 +109,15 @@ namespace Panacea.Modules.UserAccount.ViewModels
                 }
                 finally
                 {
-                    _signingIn = false;
+                   
                 }
             });
         }
 
         public override void Deactivate()
         {
-            _source.TrySetResult(false);
+            if(!_watingForAnotherTask)
+                _source.TrySetResult(false);
         }
 
         private Task<T> DoWhileBusy<T>(Func<Task<T>> act)
@@ -142,8 +147,10 @@ namespace Panacea.Modules.UserAccount.ViewModels
         private readonly PanaceaServices _core;
         private readonly TaskCompletionSource<bool> _source;
 
-        public RelayCommand LoginWithEmailCommand { get; }
+        public AsyncCommand LoginWithEmailCommand { get; }
 
-        public RelayCommand LoginWithDateCommand { get; }
+        public AsyncCommand LoginWithDateCommand { get; }
+
+        public RelayCommand RegisterCommand { get; }
     }
 }

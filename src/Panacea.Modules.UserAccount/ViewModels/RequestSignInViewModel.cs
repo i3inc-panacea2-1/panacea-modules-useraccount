@@ -20,8 +20,8 @@ namespace Panacea.Modules.UserAccount.ViewModels
             Text = text;
             CreateAccountCommand = new RelayCommand(async args =>
             {
-                //source.SetResult(await manager.NavigateToRegister());
                 taskCompletionSource.SetResult(true);
+                source.SetResult(await manager.RegisterAsync());
             });
 
             SignInCommand = new RelayCommand(async args =>

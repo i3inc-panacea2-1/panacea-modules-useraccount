@@ -19,19 +19,7 @@ namespace Panacea.Modules.UserAccount
             _core = core;
         }
 
-        public async Task<bool> LoginAsync()
-        {
-            GC.Collect(GC.MaxGeneration, GCCollectionMode.Forced);
-            if (_core.TryGetUiManager(out IUiManager ui))
-            {
-                var source = new TaskCompletionSource<bool>();
-                ui.Navigate(new LoginViewModel(_core, source));
-                var res = await source.Task;
-                ui.GoBack();
-                return res;
-            }
-            return false;
-        }
+       
 
         public async Task<bool> LogoutAsync(bool force = false)
         {
@@ -51,6 +39,40 @@ namespace Panacea.Modules.UserAccount
         public void NavigateToRegister()
         {
 
+        }
+        public async Task<bool> LoginAsync()
+        {
+            GC.Collect(GC.MaxGeneration, GCCollectionMode.Forced);
+            if (_core.TryGetUiManager(out IUiManager ui))
+            {
+                var source = new TaskCompletionSource<bool>();
+                var reg = new LoginViewModel(this, _core, source);
+                ui.Navigate(reg, false);
+                var res = await source.Task;
+                if (res && _core.TryGetUiManager(out ui) && ui.CurrentPage == reg)
+                {
+                    ui.GoBack();
+                }
+                return res;
+            }
+            return false;
+        }
+
+        public async Task<bool> RegisterAsync()
+        {
+            if (_core.TryGetUiManager(out IUiManager ui))
+            {
+                var source = new TaskCompletionSource<bool>();
+                var reg = new RegisterViewModel(this, _core, source);
+                ui.Navigate(reg, false);
+                var res = await source.Task;
+                if (res && _core.TryGetUiManager(out ui) && ui.CurrentPage == reg)
+                {
+                    ui.GoBack();
+                }
+                return res;
+            }
+            return false;
         }
 
         public Task<bool> RequestLoginAsync(string text)
