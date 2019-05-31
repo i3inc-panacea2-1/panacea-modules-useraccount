@@ -221,7 +221,7 @@
                                     HorizontalAlignment="Stretch"
                                     PanningMode="VerticalOnly"
                                     VerticalScrollBarVisibility="Auto">
-                                    <ItemsControl Name="ServicesControl" Grid.IsSharedSizeScope="True" ItemsSource="{Binding ActiveServices}">
+                                    <ItemsControl Name="ServicesControl" Grid.IsSharedSizeScope="True" ItemsSource="{Binding Services}">
                                         <ItemsControl.ItemTemplate>
                                             <DataTemplate>
                                                 <Grid>
