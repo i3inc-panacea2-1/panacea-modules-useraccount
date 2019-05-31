@@ -27,7 +27,7 @@
         <pcontrols:ImageButton
             pcontrols:Material.Icon="person"
             Command="{Binding ClickCommand}"
-            Text="{multilinguality:Translate 'Sign out',
+            Text="{multilinguality:Translate 'My Account',
                                              'core'}"
             TextVisibility="Visible"
             Visibility="{Binding SignedIn, Converter={StaticResource BoolToVis}}" />

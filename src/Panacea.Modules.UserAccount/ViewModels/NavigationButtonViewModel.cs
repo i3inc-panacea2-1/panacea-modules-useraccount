@@ -26,7 +26,7 @@ namespace Panacea.Modules.UserAccount.ViewModels
                 }
                 else
                 {
-                    await manager.LogoutAsync();
+                    manager.NavigateToMyAccount();
                 }
             });
         }

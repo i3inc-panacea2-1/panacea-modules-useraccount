@@ -19,7 +19,7 @@ namespace Panacea.Modules.UserAccount
             _core = core;
         }
 
-       
+
 
         public async Task<bool> LogoutAsync(bool force = false)
         {
@@ -33,13 +33,18 @@ namespace Panacea.Modules.UserAccount
 
         public void NavigateToMyAccount()
         {
-
+            if (_core.TryGetUiManager(out IUiManager ui))
+            {
+                var vm = new MyAccountViewModel(_core, this);
+                ui.Navigate(vm, false);
+            }
         }
 
         public void NavigateToRegister()
         {
 
         }
+
         public async Task<bool> LoginAsync()
         {
             GC.Collect(GC.MaxGeneration, GCCollectionMode.Forced);
@@ -85,5 +90,7 @@ namespace Panacea.Modules.UserAccount
             }
             return Task.FromResult(false);
         }
+
+
     }
 }
