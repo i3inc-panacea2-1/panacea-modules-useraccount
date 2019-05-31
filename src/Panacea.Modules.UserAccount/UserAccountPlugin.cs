@@ -1,5 +1,7 @@
 ﻿using Panacea.Core;
+using Panacea.Modularity.UiManager;
 using Panacea.Modularity.UserAccount;
+using Panacea.Modules.UserAccount.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,6 +31,10 @@ namespace Panacea.Modules.UserAccount
 
         public Task EndInit()
         {
+            if(_core.TryGetUiManager(out IUiManager ui))
+            {
+                ui.AddNavigationBarControl(new NavigationButtonViewModel(_core.UserService, GetUserAccountManager()));
+            }
             return Task.CompletedTask;
         }
 

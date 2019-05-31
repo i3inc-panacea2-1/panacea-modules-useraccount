@@ -49,6 +49,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Converters\NotBooleanToVisibilityConverter.cs" />
     <Compile Include="Models\RegisterResponse.cs" />
     <Compile Include="Models\SecurityQuestion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -67,6 +68,7 @@
     <Compile Include="UserAccountManager.cs" />
     <Compile Include="UserAccountPlugin.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\NavigationButtonViewModel.cs" />
     <Compile Include="ViewModels\NewPasswordViewModel.cs" />
     <Compile Include="ViewModels\RegisterErrorsViewModel.cs" />
     <Compile Include="ViewModels\RegisterViewModel.cs" />
@@ -74,6 +76,9 @@
     <Compile Include="ViewModels\WarningViewModel.cs" />
     <Compile Include="Views\LoginControl.xaml.cs">
       <DependentUpon>LoginControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NavigationButton.xaml.cs">
+      <DependentUpon>NavigationButton.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\NewPasswordPopup.xaml.cs">
       <DependentUpon>NewPasswordPopup.xaml</DependentUpon>
@@ -127,6 +132,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Views\LoginControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NavigationButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
