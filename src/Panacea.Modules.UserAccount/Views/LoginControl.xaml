@@ -143,7 +143,8 @@
                             VerticalContentAlignment="Center"
                             pcontrols:Material.Label="{multilinguality:Translate 'Password',
                                                                                  'core'}"
-                            pcontrols:Material.RelativeFontSizeRatio="1.1" />
+                            pcontrols:Material.RelativeFontSizeRatio="1.1"
+                            InputScope="Password"/>
 
 
                         <Button
