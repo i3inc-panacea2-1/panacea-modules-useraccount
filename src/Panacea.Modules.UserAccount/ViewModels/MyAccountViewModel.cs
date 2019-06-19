@@ -36,10 +36,49 @@ namespace Panacea.Modules.UserAccount.ViewModels
                     billing.NavigateToBuyServiceWizard();
                 }
             });
+            ChangeInfoCommand = new RelayCommand(arg =>
+            {
+
+                if (_core.TryGetUiManager(out IUiManager ui))
+                {
+                    ui.Navigate(new UpdateAccountViewModel(_core));
+                }
+                else
+                {
+                    _core.Logger.Error(this, "ui manager not loaded");
+                }
+            });
+            ChangeCredentialsCommand = new RelayCommand(arg =>
+            {
+
+                if (_core.TryGetUiManager(out IUiManager ui))
+                {
+                    ui.Navigate(new UpdateCredentialsViewModel());
+                }
+                else
+                {
+                    _core.Logger.Error(this, "ui manager not loaded");
+                }
+            });
+            ResetPasswordCommand = new RelayCommand(async arg =>
+            {
+
+                if (_core.TryGetUiManager(out IUiManager ui))
+                {
+                    await ui.ShowPopup<object>(new PasswordResetViewModel());
+                }
+                else
+                {
+                    _core.Logger.Error(this, "ui manager not loaded");
+                }
+            });
         }
 
         public RelayCommand SignoutCommand { get; }
         public RelayCommand BuyServiceCommand { get; }
+        public RelayCommand ChangeInfoCommand{ get; }
+        public RelayCommand ChangeCredentialsCommand { get; }
+        public RelayCommand ResetPasswordCommand { get; }
         IBillingSettings _settings;
         public IBillingSettings Settings
         {
