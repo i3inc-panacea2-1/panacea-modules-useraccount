@@ -98,10 +98,6 @@ namespace Panacea.Modules.UserAccount.ViewModels
                     {
                         source?.SetResult(true);
                     }
-                    else
-                    {
-                        source?.SetResult(false);
-                    }
                 }
                 catch
                 {
