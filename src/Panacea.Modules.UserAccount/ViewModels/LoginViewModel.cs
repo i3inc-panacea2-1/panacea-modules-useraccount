@@ -37,7 +37,8 @@ namespace Panacea.Modules.UserAccount.ViewModels
                     ui.Navigate(forgotPassViewModel);
                     var res = await src.Task;
                     source.SetResult(res);
-                } else
+                }
+                else
                 {
                     _core.Logger.Error(this, "ui manager not loaded");
                 }
@@ -84,68 +85,56 @@ namespace Panacea.Modules.UserAccount.ViewModels
                 }
                 finally
                 {
-                    
+
                 }
 
             });
             LoginWithEmailCommand = new AsyncCommand(async arg =>
             {
-                try
+                var password = (arg as PasswordBox).Password;
+
+                if (string.IsNullOrEmpty(Email))
                 {
-
-                    var password = (arg as PasswordBox).Password;
-                   
-                    if (string.IsNullOrEmpty(Email))
-                    {
-                        ShowWarning("Please provide an email");
-                        return;
-                    }
-
-                    if (!Regex.IsMatch(Email,
-                            @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z",
-                            RegexOptions.IgnoreCase))
-                    {
-                        ShowWarning("Please provide a valid email");
-                        return;
-                    }
-
-                    if (string.IsNullOrEmpty(password))
-                    {
-                        ShowWarning("Please provide a password");
-                        return;
-                    }
-
-                    if (await DoWhileBusy(() => core.UserService.LoginAsync(Email, password)))
-                    {
-                        source?.SetResult(true);
-                        if (_core.TryGetUiManager(out IUiManager ui))
-                        {
-                            ui.GoHome();
-                        }
-                        return;
-                        
-                    }
-                    else
-                    {
-                        ShowWarning("Incorrect credentials");
-                        source?.SetResult(false);
-                        return;
-                    }
+                    ShowWarning("Please provide an email");
+                    return;
                 }
-                catch
+
+                if (!Regex.IsMatch(Email,
+                        @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z",
+                        RegexOptions.IgnoreCase))
                 {
+                    ShowWarning("Please provide a valid email");
+                    return;
+                }
+
+                if (string.IsNullOrEmpty(password))
+                {
+                    ShowWarning("Please provide a password");
+                    return;
+                }
+
+                if (await DoWhileBusy(() => core.UserService.LoginAsync(Email, password)))
+                {
+                    source?.SetResult(true);
+                    if (_core.TryGetUiManager(out IUiManager ui))
+                    {
+                        ui.GoHome();
+                    }
+                    return;
 
                 }
-                finally
+                else
                 {
-                   
+                    ShowWarning("Incorrect credentials");
+                    source?.SetResult(false);
+                    return;
                 }
             });
         }
 
         public override void Deactivate()
         {
-            if(!_watingForAnotherTask)
+            if (!_watingForAnotherTask)
                 _source.TrySetResult(false);
         }
 
@@ -176,7 +165,7 @@ namespace Panacea.Modules.UserAccount.ViewModels
         private readonly PanaceaServices _core;
         private readonly TaskCompletionSource<bool> _source;
 
-        public RelayCommand ForgotPasswordCommand { get;  }
+        public RelayCommand ForgotPasswordCommand { get; }
         public AsyncCommand LoginWithEmailCommand { get; }
 
         public AsyncCommand LoginWithDateCommand { get; }

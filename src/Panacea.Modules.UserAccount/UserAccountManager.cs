@@ -19,10 +19,9 @@ namespace Panacea.Modules.UserAccount
             _core = core;
         }
 
-
-
         public async Task<bool> LogoutAsync(bool force = false)
         {
+            if (_core.UserService.User.Id == null) return true;
             if (_core.TryGetUiManager(out IUiManager ui))
             {
                 await ui.DoWhileBusy(() => _core.UserService.LogoutAsync());
@@ -47,7 +46,7 @@ namespace Panacea.Modules.UserAccount
 
         public async Task<bool> LoginAsync()
         {
-            GC.Collect(GC.MaxGeneration, GCCollectionMode.Forced);
+            if (_core.UserService.User.Id != null) return true;
             if (_core.TryGetUiManager(out IUiManager ui))
             {
                 var source = new TaskCompletionSource<bool>();
@@ -65,6 +64,7 @@ namespace Panacea.Modules.UserAccount
 
         public async Task<bool> RegisterAsync()
         {
+            if (_core.UserService.User.Id != null) return true;
             if (_core.TryGetUiManager(out IUiManager ui))
             {
                 var source = new TaskCompletionSource<bool>();
@@ -81,6 +81,7 @@ namespace Panacea.Modules.UserAccount
         }
         public Task<bool> RequestLoginAsync(string text)
         {
+            if (_core.UserService.User.Id != null) return Task.FromResult(true);
             if (_core.TryGetUiManager(out IUiManager ui))
             {
                 var source = new TaskCompletionSource<bool>();
