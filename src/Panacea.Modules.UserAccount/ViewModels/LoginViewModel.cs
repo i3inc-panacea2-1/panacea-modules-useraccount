@@ -28,6 +28,20 @@ namespace Panacea.Modules.UserAccount.ViewModels
             {
                 Email = "v.a@dotbydot.gr";
             }
+            ForgotPasswordCommand = new RelayCommand(async arg =>
+            {
+                if (_core.TryGetUiManager(out IUiManager ui))
+                {
+                    var src = new TaskCompletionSource<bool>();
+                    var forgotPassViewModel = new ForgotPasswordViewModel(_core, src);
+                    ui.Navigate(forgotPassViewModel);
+                    var res = await src.Task;
+                    source.SetResult(res);
+                } else
+                {
+                    _core.Logger.Error(this, "ui manager not loaded");
+                }
+            });
             RegisterCommand = new RelayCommand(async arg =>
             {
                 _watingForAnotherTask = true;
@@ -51,10 +65,17 @@ namespace Panacea.Modules.UserAccount.ViewModels
                     if (await DoWhileBusy(() => core.UserService.LoginAsync(DateTime.Parse(Date), password)))
                     {
                         source?.SetResult(true);
+                        if (_core.TryGetUiManager(out IUiManager ui))
+                        {
+                            ui.GoHome();
+                        }
+                        return;
                     }
                     else
                     {
+                        ShowWarning("Incorrect credentials");
                         source?.SetResult(false);
+                        return;
                     }
                 }
                 catch
@@ -97,6 +118,18 @@ namespace Panacea.Modules.UserAccount.ViewModels
                     if (await DoWhileBusy(() => core.UserService.LoginAsync(Email, password)))
                     {
                         source?.SetResult(true);
+                        if (_core.TryGetUiManager(out IUiManager ui))
+                        {
+                            ui.GoHome();
+                        }
+                        return;
+                        
+                    }
+                    else
+                    {
+                        ShowWarning("Incorrect credentials");
+                        source?.SetResult(false);
+                        return;
                     }
                 }
                 catch
@@ -143,6 +176,7 @@ namespace Panacea.Modules.UserAccount.ViewModels
         private readonly PanaceaServices _core;
         private readonly TaskCompletionSource<bool> _source;
 
+        public RelayCommand ForgotPasswordCommand { get;  }
         public AsyncCommand LoginWithEmailCommand { get; }
 
         public AsyncCommand LoginWithDateCommand { get; }

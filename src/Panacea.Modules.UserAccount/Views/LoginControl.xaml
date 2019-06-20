@@ -144,7 +144,7 @@
                             pcontrols:Material.Label="{multilinguality:Translate 'Password',
                                                                                  'core'}"
                             pcontrols:Material.RelativeFontSizeRatio="1.1"
-                            InputScope="Password"/>
+                            InputScope="Password" />
 
 
                         <Button
@@ -152,8 +152,8 @@
                             Margin="0,20,0,0"
                             HorizontalAlignment="Right"
                             VerticalAlignment="Center"
-                            pcontrols:Material.RelativeFontSizeRatio="1.1"
                             pcontrols:Material.AsyncCommand="{Binding LoginWithDateCommand}"
+                            pcontrols:Material.RelativeFontSizeRatio="1.1"
                             CommandParameter="{Binding ElementName=passdob}"
                             Content="{multilinguality:Translate 'Sign in',
                                                                 'core'}"
@@ -200,8 +200,8 @@
                             Margin="0,20,0,0"
                             HorizontalAlignment="Right"
                             VerticalAlignment="Center"
-                            pcontrols:Material.RelativeFontSizeRatio="1.1"
                             pcontrols:Material.AsyncCommand="{Binding LoginWithEmailCommand}"
+                            pcontrols:Material.RelativeFontSizeRatio="1.1"
                             CommandParameter="{Binding ElementName=pass}"
                             Content="{multilinguality:Translate 'Sign in',
                                                                 'core'}"

@@ -44,7 +44,7 @@ namespace Panacea.Modules.UserAccount.ViewModels
 
                 if (_core.TryGetUiManager(out IUiManager ui))
                 {
-                    ui.Navigate(new UpdateCredentialsViewModel());
+                    ui.Navigate(new UpdateCredentialsViewModel(_core));
                 }
                 else
                 {
@@ -56,7 +56,7 @@ namespace Panacea.Modules.UserAccount.ViewModels
 
                 if (_core.TryGetUiManager(out IUiManager ui))
                 {
-                    await ui.ShowPopup<object>(new PasswordResetViewModel());
+                    await ui.ShowPopup<object>(new PasswordResetViewModel(_core));
                 }
                 else
                 {
@@ -89,15 +89,7 @@ namespace Panacea.Modules.UserAccount.ViewModels
                     {
                         try
                         {
-                            var response = await _core.HttpClient.GetObjectAsync<object>(
-                                "update_user/",
-                                postData: new List<KeyValuePair<string, string>>()
-                                {
-                        new KeyValuePair<string, string>("first_name", FirstName),
-                        new KeyValuePair<string, string>("last_name", LastName),
-                        new KeyValuePair<string, string>("phonenumber", Telephone)
-                                });
-                            if (response.Success)
+                            if (await _core.UserService.UpdateUserInfoAsync(FirstName,LastName,Telephone))
                             {
                                 _ = ui.ShowPopup(
                                     new SimplePopupViewModel(

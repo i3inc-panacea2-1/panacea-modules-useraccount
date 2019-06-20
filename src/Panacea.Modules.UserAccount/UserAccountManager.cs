@@ -79,7 +79,6 @@ namespace Panacea.Modules.UserAccount
             }
             return false;
         }
-
         public Task<bool> RequestLoginAsync(string text)
         {
             if (_core.TryGetUiManager(out IUiManager ui))

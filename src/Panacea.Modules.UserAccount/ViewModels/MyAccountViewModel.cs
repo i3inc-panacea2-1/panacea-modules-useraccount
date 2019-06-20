@@ -53,7 +53,7 @@ namespace Panacea.Modules.UserAccount.ViewModels
 
                 if (_core.TryGetUiManager(out IUiManager ui))
                 {
-                    ui.Navigate(new UpdateCredentialsViewModel());
+                    ui.Navigate(new UpdateCredentialsViewModel(_core));
                 }
                 else
                 {
@@ -65,7 +65,7 @@ namespace Panacea.Modules.UserAccount.ViewModels
 
                 if (_core.TryGetUiManager(out IUiManager ui))
                 {
-                    await ui.ShowPopup<object>(new PasswordResetViewModel());
+                    await ui.ShowPopup<object>(new PasswordResetViewModel(_core));
                 }
                 else
                 {
