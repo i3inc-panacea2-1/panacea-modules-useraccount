@@ -36,163 +36,172 @@
                         <ColumnDefinition Width="1*" />
                         <ColumnDefinition Width="1.4*" />
                     </Grid.ColumnDefinitions>
-                    <GroupBox
-                        Margin="5,0"
-                        Background="White"
-                        Header="{multilinguality:Translate 'User details',
-                                                           'core'}">
-                        <StackPanel
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            Background="Transparent">
-                            <Grid Margin="10">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="auto" />
-                                    <ColumnDefinition />
-                                </Grid.ColumnDefinitions>
+                    <pc:Card Margin="5,0" Background="White">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <TextBlock
+                                Margin="10"
+                                pc:Material.RelativeFontSizeRatio="1.3"
+                                Text="{multilinguality:Translate 'User details',
+                                                                 'core'}" />
 
-                                <Label
-                                    Name="lblFirstName"
-                                    Grid.Row="0"
-                                    Margin="10,0"
-                                    HorizontalAlignment="Right"
-                                    VerticalAlignment="Center"
-                                    Content="{multilinguality:Translate 'First Name',
-                                                                        'core'}"
-                                    FontSize="{DynamicResource FontSize-Normal}" />
-                                <TextBlock
-                                    Grid.Row="0"
-                                    Grid.Column="1"
-                                    Margin="3"
-                                    VerticalAlignment="Center"
-                                    Text="{Binding User.FirstName}" />
-
-                                <Label
-                                    Name="lblLastName"
-                                    Grid.Row="1"
-                                    Margin="10,0"
-                                    HorizontalAlignment="Right"
-                                    VerticalAlignment="Center"
-                                    pc:Material.RelativeFontSizeRatio="1.0"
-                                    Content="{multilinguality:Translate 'Last Name',
-                                                                        'core'}" />
-                                <TextBlock
-                                    Name="lastName"
-                                    Grid.Row="1"
-                                    Grid.Column="1"
-                                    Margin="3"
-                                    VerticalAlignment="Center"
-                                    Text="{Binding User.LastName}" />
-
-                                <Label
-                                    Grid.Row="4"
-                                    Margin="10,0"
-                                    HorizontalAlignment="Right"
-                                    VerticalAlignment="Center"
-                                    Content="{multilinguality:Translate 'Date of birth',
-                                                                        'core'}" />
-
-                                <TextBlock
-                                    Name="txtdob"
-                                    Grid.Row="4"
-                                    Grid.Column="1"
-                                    Margin="3"
-                                    VerticalAlignment="Center"
-                                    Text="{Binding User.DateOfBirth, StringFormat=dd MMM\, yyyy}" />
-
-                                <Label
-                                    Name="lblEmail"
-                                    Grid.Row="7"
-                                    Margin="10,0"
-                                    HorizontalAlignment="Right"
-                                    VerticalAlignment="Center"
-                                    Content="{multilinguality:Translate 'Email',
-                                                                        'core'}" />
-                                <TextBlock
-                                    Name="email"
-                                    Grid.Row="7"
-                                    Grid.Column="1"
-                                    Margin="3"
-                                    VerticalAlignment="Center"
-                                    Text="{Binding User.Email}" />
-
-                                <Label
-                                    Name="lblNumber"
-                                    Grid.Row="8"
-                                    Margin="10,0"
-                                    HorizontalAlignment="Right"
-                                    VerticalAlignment="Center"
-                                    Content="{multilinguality:Translate 'Telephone',
-                                                                        'core'}" />
-                                <TextBlock
-                                    Name="phoneNumber"
-                                    Grid.Row="8"
-                                    Grid.Column="1"
-                                    Margin="3"
-                                    VerticalAlignment="Center"
-                                    Text="{Binding User.Telephone}" />
-                            </Grid>
-                            <StackPanel Name="ChangeAccountLinks">
-                                <TextBlock
-                                    Grid.Row="2"
-                                    Margin="20,10"
-                                    TextAlignment="Center">
-                                    <TextBlock.Inlines>
-                                        <Hyperlink Command="{Binding ChangeInfoCommand}">
-                                            <TextBlock Text="{multilinguality:Translate 'Change account information', 'core'}" />
-                                        </Hyperlink>
-                                    </TextBlock.Inlines>
-                                </TextBlock>
-                                <TextBlock
-                                    Grid.Row="3"
-                                    Margin="20,10"
-                                    TextAlignment="Center"
-                                    TextWrapping="Wrap">
-                                    <TextBlock.Inlines>
-                                        <Hyperlink Command="{Binding ChangeCredentialsCommand}">
-                                            <TextBlock Text="{multilinguality:Translate 'Change your credentials', 'core'}" />
-                                        </Hyperlink>
-                                    </TextBlock.Inlines>
-                                </TextBlock>
-                                <TextBlock
-                                    Grid.Row="4"
-                                    Margin="20,10"
-                                    TextAlignment="Center"
-                                    TextWrapping="Wrap">
-                                    <TextBlock.Inlines>
-                                        <Hyperlink Command="{Binding ResetPasswordCommand}">
-                                            <TextBlock Text="{multilinguality:Translate 'Reset your passcode', 'core'}" />
-                                        </Hyperlink>
-                                    </TextBlock.Inlines>
-                                </TextBlock>
-                            </StackPanel>
-
-
-                            <Button
-                                Name="gotocapture"
-                                Margin="30,30"
+                            <StackPanel
+                                Grid.Row="1"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center"
-                                Background="#12a5f7"
-                                Command="{Binding SignoutCommand}"
-                                Content="{multilinguality:Translate 'Sign out',
-                                                                    'core'}"
-                                Style="{DynamicResource PrimaryButton}" />
-                        </StackPanel>
+                                Background="Transparent">
+                                <Grid Margin="10">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto" />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label
+                                        Name="lblFirstName"
+                                        Grid.Row="0"
+                                        Margin="10,0"
+                                        HorizontalAlignment="Right"
+                                        VerticalAlignment="Center"
+                                        Content="{multilinguality:Translate 'First Name',
+                                                                            'core'}"
+                                        FontSize="{DynamicResource FontSize-Normal}" />
+                                    <TextBlock
+                                        Grid.Row="0"
+                                        Grid.Column="1"
+                                        Margin="3"
+                                        VerticalAlignment="Center"
+                                        Text="{Binding User.FirstName}" />
+
+                                    <Label
+                                        Name="lblLastName"
+                                        Grid.Row="1"
+                                        Margin="10,0"
+                                        HorizontalAlignment="Right"
+                                        VerticalAlignment="Center"
+                                        pc:Material.RelativeFontSizeRatio="1.0"
+                                        Content="{multilinguality:Translate 'Last Name',
+                                                                            'core'}" />
+                                    <TextBlock
+                                        Name="lastName"
+                                        Grid.Row="1"
+                                        Grid.Column="1"
+                                        Margin="3"
+                                        VerticalAlignment="Center"
+                                        Text="{Binding User.LastName}" />
+
+                                    <Label
+                                        Grid.Row="4"
+                                        Margin="10,0"
+                                        HorizontalAlignment="Right"
+                                        VerticalAlignment="Center"
+                                        Content="{multilinguality:Translate 'Date of birth',
+                                                                            'core'}" />
+
+                                    <TextBlock
+                                        Name="txtdob"
+                                        Grid.Row="4"
+                                        Grid.Column="1"
+                                        Margin="3"
+                                        VerticalAlignment="Center"
+                                        Text="{Binding User.DateOfBirth, StringFormat=dd MMM\, yyyy}" />
+
+                                    <Label
+                                        Name="lblEmail"
+                                        Grid.Row="7"
+                                        Margin="10,0"
+                                        HorizontalAlignment="Right"
+                                        VerticalAlignment="Center"
+                                        Content="{multilinguality:Translate 'Email',
+                                                                            'core'}" />
+                                    <TextBlock
+                                        Name="email"
+                                        Grid.Row="7"
+                                        Grid.Column="1"
+                                        Margin="3"
+                                        VerticalAlignment="Center"
+                                        Text="{Binding User.Email}" />
+
+                                    <Label
+                                        Name="lblNumber"
+                                        Grid.Row="8"
+                                        Margin="10,0"
+                                        HorizontalAlignment="Right"
+                                        VerticalAlignment="Center"
+                                        Content="{multilinguality:Translate 'Telephone',
+                                                                            'core'}" />
+                                    <TextBlock
+                                        Name="phoneNumber"
+                                        Grid.Row="8"
+                                        Grid.Column="1"
+                                        Margin="3"
+                                        VerticalAlignment="Center"
+                                        Text="{Binding User.Telephone}" />
+                                </Grid>
+                                <StackPanel Name="ChangeAccountLinks">
+                                    <TextBlock
+                                        Grid.Row="2"
+                                        Margin="20,10"
+                                        TextAlignment="Center">
+                                        <TextBlock.Inlines>
+                                            <Hyperlink Command="{Binding ChangeInfoCommand}">
+                                                <TextBlock Text="{multilinguality:Translate 'Change account information', 'core'}" />
+                                            </Hyperlink>
+                                        </TextBlock.Inlines>
+                                    </TextBlock>
+                                    <TextBlock
+                                        Grid.Row="3"
+                                        Margin="20,10"
+                                        TextAlignment="Center"
+                                        TextWrapping="Wrap">
+                                        <TextBlock.Inlines>
+                                            <Hyperlink Command="{Binding ChangeCredentialsCommand}">
+                                                <TextBlock Text="{multilinguality:Translate 'Change your credentials', 'core'}" />
+                                            </Hyperlink>
+                                        </TextBlock.Inlines>
+                                    </TextBlock>
+                                    <TextBlock
+                                        Grid.Row="4"
+                                        Margin="20,10"
+                                        TextAlignment="Center"
+                                        TextWrapping="Wrap">
+                                        <TextBlock.Inlines>
+                                            <Hyperlink Command="{Binding ResetPasswordCommand}">
+                                                <TextBlock Text="{multilinguality:Translate 'Reset your passcode', 'core'}" />
+                                            </Hyperlink>
+                                        </TextBlock.Inlines>
+                                    </TextBlock>
+                                </StackPanel>
 
 
-                    </GroupBox>
+                                <Button
+                                    Name="gotocapture"
+                                    Margin="30,30"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Background="#12a5f7"
+                                    Command="{Binding SignoutCommand}"
+                                    Content="{multilinguality:Translate 'Sign out',
+                                                                        'core'}"
+                                    Style="{DynamicResource PrimaryButton}" />
+                            </StackPanel>
+
+                        </Grid>
+
+                    </pc:Card>
 
 
                     <Grid Grid.Column="1">
@@ -200,157 +209,173 @@
                             <RowDefinition Height="*" />
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
-                        <GroupBox
-                            Margin="5,0"
-                            Background="White"
-                            Header="{multilinguality:Translate 'Services',
-                                                               'core'}">
+                        <pc:Card Margin="5 0 5 5" Background="White">
                             <Grid>
                                 <Grid.RowDefinitions>
-
-                                    <RowDefinition />
-                                    <RowDefinition Height="auto" />
-                                    <RowDefinition Height="auto" />
-
-                                </Grid.RowDefinitions>
-
-                                <ScrollViewer
-                                    Grid.Row="0"
-                                    Margin="10"
-                                    HorizontalAlignment="Stretch"
-                                    PanningMode="VerticalOnly"
-                                    VerticalScrollBarVisibility="Auto">
-                                    <ItemsControl
-                                        Name="ServicesControl"
-                                        Grid.IsSharedSizeScope="True"
-                                        ItemsSource="{Binding Services}">
-                                        <ItemsControl.ItemTemplate>
-                                            <DataTemplate>
-                                                <Grid>
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="auto" SharedSizeGroup="A" />
-                                                        <ColumnDefinition />
-                                                    </Grid.ColumnDefinitions>
-                                                    <TextBlock
-                                                        HorizontalAlignment="Right"
-                                                        VerticalAlignment="Stretch"
-                                                        FontWeight="Bold"
-                                                        Text="{Binding Name}" />
-                                                    <Grid Grid.Column="1">
-                                                        <Grid.RowDefinitions>
-                                                            <RowDefinition />
-                                                            <RowDefinition />
-                                                        </Grid.RowDefinitions>
-                                                        <TextBlock
-                                                            Margin="10,0,0,0"
-                                                            HorizontalAlignment="Left"
-                                                            pc:Material.RelativeFontSizeRatio="1.0"
-                                                            Text="{Binding RemainingQuantityText.Text}"
-                                                            TextWrapping="Wrap" />
-                                                        <TextBlock
-                                                            Grid.Row="1"
-                                                            Margin="10,0,0,0"
-                                                            HorizontalAlignment="Left"
-                                                            Text="{Binding ExpiresText.Text}"
-                                                            TextWrapping="Wrap" />
-                                                    </Grid>
-                                                </Grid>
-                                            </DataTemplate>
-                                        </ItemsControl.ItemTemplate>
-                                    </ItemsControl>
-                                </ScrollViewer>
-
-                                <TextBlock
-                                    Grid.Row="1"
-                                    VerticalAlignment="Center"
-                                    Text="{multilinguality:Translate 'No service',
-                                                                     'core'}"
-                                    TextAlignment="Center"
-                                    Visibility="{Binding ElementName=ServicesControl, Path=HasItems, Converter={StaticResource ServicesControl}}" />
-                                <Button
-                                    Grid.Row="2"
-                                    Margin="5"
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center"
-                                    Background="{DynamicResource ColorSuccess}"
-                                    Command="{Binding BuyServiceCommand}"
-                                    Content="{multilinguality:Translate 'Buy service',
-                                                                        'core'}"
-                                    Style="{DynamicResource PrimaryButton}"
-                                    Visibility="{Binding ServicesVisible}" />
-
-                            </Grid>
-                        </GroupBox>
-                        <GroupBox
-                            Grid.Row="1"
-                            Margin="5,0"
-                            Background="White"
-                            Header="{multilinguality:Translate 'Payment history',
-                                                               'core'}">
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition />
                                     <RowDefinition Height="Auto" />
+                                    <RowDefinition />
                                 </Grid.RowDefinitions>
-                                <ListView
-                                    Name="PurchaseHistory"
-                                    Margin="3"
-                                    AlternationCount="2"
-                                    BorderThickness="0"
-                                    Grid.IsSharedSizeScope="True"
-                                    ItemsSource="{Binding Ledgers}"
-                                    ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                                    ScrollViewer.PanningMode="Both">
-                                    <ListView.Resources>
-                                        <Style TargetType="ListViewItem">
-                                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                                        </Style>
-                                    </ListView.Resources>
-                                    <ListView.View>
-                                        <GridView>
+                                <TextBlock
+                                    Margin="10"
+                                    pc:Material.RelativeFontSizeRatio="1.3"
+                                    Text="{multilinguality:Translate 'Services',
+                                                                     'core'}" />
 
-                                            <GridViewColumn
-                                                Width="Auto"
-                                                DisplayMemberBinding="{Binding Path=Timestamp, StringFormat=g}"
-                                                Header="Date" />
-                                            <GridViewColumn DisplayMemberBinding="{Binding Path=PackageItem.Name}" Header="Service" />
-                                            <GridViewColumn Width="150" Header="Price">
 
-                                                <GridViewColumn.CellTemplate>
-                                                    <DataTemplate>
-                                                        <TextBlock TextAlignment="Right" />
-                                                    </DataTemplate>
-                                                </GridViewColumn.CellTemplate>
-                                            </GridViewColumn>
-                                            <GridViewColumn
-                                                Width="Auto"
-                                                DisplayMemberBinding="{Binding Path=TransactionType}"
-                                                Header="Type" />
-                                            <GridViewColumn
-                                                Width="Auto"
-                                                DisplayMemberBinding="{Binding Path=Status}"
-                                                Header="Status" />
-                                            <GridViewColumn
-                                                Width="Auto"
-                                                DisplayMemberBinding="{Binding Path=Id}"
-                                                Header="Id" />
-                                        </GridView>
-                                    </ListView.View>
+                                <Grid Grid.Row="1">
+                                    <Grid.RowDefinitions>
 
-                                </ListView>
-                                <Button
-                                    Name="RefundButton"
-                                    Grid.Row="1"
-                                    Margin="2"
-                                    HorizontalAlignment="Center"
-                                    Command="{Binding RequestRefundCommand}"
-                                    Content="{multilinguality:Translate 'Request refund',
-                                                                        'core'}"
-                                    Visibility="{Binding AllowRefunds, Converter={StaticResource Converter}}" />
+                                        <RowDefinition />
+                                        <RowDefinition Height="auto" />
+                                        <RowDefinition Height="auto" />
+
+                                    </Grid.RowDefinitions>
+
+                                    <ScrollViewer
+                                        Grid.Row="0"
+                                        Margin="10"
+                                        HorizontalAlignment="Stretch"
+                                        PanningMode="VerticalOnly"
+                                        VerticalScrollBarVisibility="Auto">
+                                        <ItemsControl
+                                            Name="ServicesControl"
+                                            Grid.IsSharedSizeScope="True"
+                                            ItemsSource="{Binding Services}">
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Grid>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="auto" SharedSizeGroup="A" />
+                                                            <ColumnDefinition />
+                                                        </Grid.ColumnDefinitions>
+                                                        <TextBlock
+                                                            HorizontalAlignment="Right"
+                                                            VerticalAlignment="Stretch"
+                                                            FontWeight="Bold"
+                                                            Text="{Binding Name}" />
+                                                        <Grid Grid.Column="1">
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition />
+                                                                <RowDefinition />
+                                                            </Grid.RowDefinitions>
+                                                            <TextBlock
+                                                                Margin="10,0,0,0"
+                                                                HorizontalAlignment="Left"
+                                                                pc:Material.RelativeFontSizeRatio="1.0"
+                                                                Text="{Binding RemainingQuantityText.Text}"
+                                                                TextWrapping="Wrap" />
+                                                            <TextBlock
+                                                                Grid.Row="1"
+                                                                Margin="10,0,0,0"
+                                                                HorizontalAlignment="Left"
+                                                                Text="{Binding ExpiresText.Text}"
+                                                                TextWrapping="Wrap" />
+                                                        </Grid>
+                                                    </Grid>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                    </ScrollViewer>
+
+                                    <TextBlock
+                                        Grid.Row="1"
+                                        VerticalAlignment="Center"
+                                        Text="{multilinguality:Translate 'No service',
+                                                                         'core'}"
+                                        TextAlignment="Center"
+                                        Visibility="{Binding ElementName=ServicesControl, Path=HasItems, Converter={StaticResource ServicesControl}}" />
+                                    <Button
+                                        Grid.Row="2"
+                                        Margin="5"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Background="{DynamicResource ColorSuccess}"
+                                        Command="{Binding BuyServiceCommand}"
+                                        Content="{multilinguality:Translate 'Buy service',
+                                                                            'core'}"
+                                        Style="{DynamicResource PrimaryButton}"
+                                        Visibility="{Binding ServicesVisible}" />
+
+                                </Grid>
                             </Grid>
+                        </pc:Card>
+                        <pc:Card Margin="5 5 5 0" Background="White" Grid.Row="1">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <TextBlock
+                                    Margin="10"
+                                    pc:Material.RelativeFontSizeRatio="1.3"
+                                    Text="{multilinguality:Translate 'Payment history',
+                                                                     'core'}" />
 
 
-                        </GroupBox>
+
+                                <Grid Grid.Row="1">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <ListView
+                                        Name="PurchaseHistory"
+                                        Margin="3"
+                                        AlternationCount="2"
+                                        BorderThickness="0"
+                                        Grid.IsSharedSizeScope="True"
+                                        ItemsSource="{Binding Ledgers}"
+                                        ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                                        ScrollViewer.PanningMode="Both">
+                                        <ListView.Resources>
+                                            <Style TargetType="ListViewItem">
+                                                <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                                            </Style>
+                                        </ListView.Resources>
+                                        <ListView.View>
+                                            <GridView>
+
+                                                <GridViewColumn
+                                                    Width="Auto"
+                                                    DisplayMemberBinding="{Binding Path=Timestamp, StringFormat=g}"
+                                                    Header="Date" />
+                                                <GridViewColumn DisplayMemberBinding="{Binding Path=PackageItem.Name}" Header="Service" />
+                                                <GridViewColumn Width="150" Header="Price">
+
+                                                    <GridViewColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                            <TextBlock TextAlignment="Right" />
+                                                        </DataTemplate>
+                                                    </GridViewColumn.CellTemplate>
+                                                </GridViewColumn>
+                                                <GridViewColumn
+                                                    Width="Auto"
+                                                    DisplayMemberBinding="{Binding Path=TransactionType}"
+                                                    Header="Type" />
+                                                <GridViewColumn
+                                                    Width="Auto"
+                                                    DisplayMemberBinding="{Binding Path=Status}"
+                                                    Header="Status" />
+                                                <GridViewColumn
+                                                    Width="Auto"
+                                                    DisplayMemberBinding="{Binding Path=Id}"
+                                                    Header="Id" />
+                                            </GridView>
+                                        </ListView.View>
+
+                                    </ListView>
+                                    <Button
+                                        Name="RefundButton"
+                                        Grid.Row="1"
+                                        Margin="2"
+                                        HorizontalAlignment="Center"
+                                        Command="{Binding RequestRefundCommand}"
+                                        Content="{multilinguality:Translate 'Request refund',
+                                                                            'core'}"
+                                        Visibility="{Binding AllowRefunds, Converter={StaticResource Converter}}" />
+                                </Grid>
+                            </Grid>
+                        </pc:Card>
                     </Grid>
                 </Grid>
             </Grid>

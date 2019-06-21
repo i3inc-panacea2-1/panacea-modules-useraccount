@@ -18,99 +18,90 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <ScrollViewer>
-            <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Top">
-                <TextBlock
-                    Margin="20"
-                    pcontrols:Material.RelativeFontSizeRatio="1.2"
-                    Text="{multilinguality:Translate 'Update your account information',
-                                                     'core'}"
-                    TextAlignment="Center" />
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1*" SharedSizeGroup="a" />
-                        <ColumnDefinition Width="1*" SharedSizeGroup="a" />
-                    </Grid.ColumnDefinitions>
-                    <Grid Margin="10" VerticalAlignment="Top">
-                        <Grid.RowDefinitions>
-                            <RowDefinition />
-                            <RowDefinition />
-                            <RowDefinition />
-                            <RowDefinition />
-                            <RowDefinition />
-                            <RowDefinition />
-                            <RowDefinition />
-                            <RowDefinition />
-                            <RowDefinition />
-                            <RowDefinition />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="auto" />
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
-                        <TextBox
-                            Name="firstName"
-                            Grid.Row="0"
-                            Grid.Column="1"
-                            Margin="3"
-                            VerticalContentAlignment="Center"
-                            pcontrols:Material.Label="{multilinguality:Translate 'First Name',
-                                                                                 'core'}"
-                            Text="{Binding FirstName, Mode=TwoWay}" />
-                        <TextBox
-                            Name="lastName"
-                            Grid.Row="1"
-                            Grid.Column="1"
-                            Margin="3"
-                            VerticalContentAlignment="Center"
-                            pcontrols:Material.Label="{multilinguality:Translate 'Last Name',
-                                                                                 'core'}"
-                            Text="{Binding LastName, Mode=TwoWay}" />
-                        <TextBox
-                            Name="phoneNumber"
-                            Grid.Row="8"
-                            Grid.Column="1"
-                            Margin="3"
-                            VerticalContentAlignment="Center"
-                            pcontrols:Material.Label="{multilinguality:Translate 'Telephone',
-                                                                                 'core'}"
-                            PreviewTextInput="NumberValidationTextBox"
-                            Text="{Binding Telephone, Mode=TwoWay}" />
-                    </Grid>
-                    <StackPanel Grid.Column="2" VerticalAlignment="Top">
-                        <TextBlock
-                            Grid.Row="7"
-                            Grid.Column="1"
-                            Margin="30,20,0,20"
-                            TextAlignment="Center">
-                            <TextBlock.Inlines>
-                                <Hyperlink Command="{Binding ChangeCredentialsCommand}">
-                                    <TextBlock Text="{multilinguality:Translate 'Change your credentials', 'core'}" />
-                                </Hyperlink>
-                            </TextBlock.Inlines>
-                        </TextBlock>
-                        <TextBlock
-                            Grid.Row="7"
-                            Grid.Column="1"
-                            Margin="30,20,0,20"
-                            TextAlignment="Center">
-                            <TextBlock.Inlines>
-                                <Hyperlink Command="{Binding ResetPasswordCommand}">
-                                    <TextBlock Text="{multilinguality:Translate 'Reset passcode', 'core'}" />
-                                </Hyperlink>
-                            </TextBlock.Inlines>
-                        </TextBlock>
-                    </StackPanel>
-                </Grid>
-            </StackPanel>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="3*" />
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
+                <StackPanel
+                    Grid.Column="1"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Top">
+                    <TextBlock
+                        Margin="20"
+                        pcontrols:Material.RelativeFontSizeRatio="1.2"
+                        Text="{multilinguality:Translate 'Update your account information',
+                                                         'core'}"
+                        TextAlignment="Center" />
+
+
+                    <TextBox
+                        Name="firstName"
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Margin="3"
+                        VerticalContentAlignment="Center"
+                        pcontrols:Material.Label="{multilinguality:Translate 'First Name',
+                                                                             'core'}"
+                        Text="{Binding FirstName, Mode=TwoWay}" />
+                    <TextBox
+                        Name="lastName"
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Margin="3"
+                        VerticalContentAlignment="Center"
+                        pcontrols:Material.Label="{multilinguality:Translate 'Last Name',
+                                                                             'core'}"
+                        Text="{Binding LastName, Mode=TwoWay}" />
+                    <TextBox
+                        Name="phoneNumber"
+                        Grid.Row="8"
+                        Grid.Column="1"
+                        Margin="3"
+                        VerticalContentAlignment="Center"
+                        pcontrols:Material.Label="{multilinguality:Translate 'Telephone',
+                                                                             'core'}"
+                        PreviewTextInput="NumberValidationTextBox"
+                        Text="{Binding Telephone, Mode=TwoWay}" />
+
+                    <Button
+                        Grid.Row="1"
+                        Margin="20"
+                        Padding="30,15"
+                        HorizontalAlignment="Center"
+                        Command="{Binding SaveCommand}"
+                        Content="{multilinguality:Translate 'Save',
+                                                            'core'}"
+                        Style="{DynamicResource PrimaryButton}" />
+                </StackPanel>
+            </Grid>
+
         </ScrollViewer>
-        <Button
-            Grid.Row="1"
-            Margin="20"
-            Padding="30,15"
-            HorizontalAlignment="Right"
-            Command="{Binding SaveCommand}"
-            Content="{multilinguality:Translate 'Save',
-                                                'core'}"
-            Style="{DynamicResource PrimaryButton}" />
+        <StackPanel Grid.Row="1">
+            <TextBlock
+                Grid.Row="7"
+                Grid.Column="1"
+                Margin="5"
+                TextAlignment="Center">
+                <TextBlock.Inlines>
+                    <Hyperlink Command="{Binding ChangeCredentialsCommand}">
+                        <TextBlock Text="{multilinguality:Translate 'Change your credentials', 'core'}" />
+                    </Hyperlink>
+                </TextBlock.Inlines>
+            </TextBlock>
+            <TextBlock
+                Grid.Row="7"
+                Grid.Column="1"
+                Margin="5"
+                TextAlignment="Center">
+                <TextBlock.Inlines>
+                    <Hyperlink Command="{Binding ResetPasswordCommand}">
+                        <TextBlock Text="{multilinguality:Translate 'Reset passcode', 'core'}" />
+                    </Hyperlink>
+                </TextBlock.Inlines>
+            </TextBlock>
+        </StackPanel>
+
     </Grid>
 </UserControl>

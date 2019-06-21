@@ -125,6 +125,14 @@ namespace Panacea.Modules.UserAccount.ViewModels
 
         public override async void Activate()
         {
+            if(_core.UserService.User.Id == null)
+            {
+                if(_core.TryGetUiManager(out IUiManager ui))
+                {
+                    ui.GoBack();
+                }
+                return;
+            }
             User = _core.UserService.User;
             await Update();
         }

@@ -35,7 +35,7 @@ namespace Panacea.Modules.UserAccount
             if (_core.TryGetUiManager(out IUiManager ui))
             {
                 var vm = new MyAccountViewModel(_core, this);
-                ui.Navigate(vm, false);
+                ui.Navigate(vm);
             }
         }
 
