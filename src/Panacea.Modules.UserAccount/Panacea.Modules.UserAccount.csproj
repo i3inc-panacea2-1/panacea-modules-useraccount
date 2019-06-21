@@ -112,6 +112,7 @@
     <Compile Include="ViewModels\RegisterErrorsViewModel.cs" />
     <Compile Include="ViewModels\RegisterViewModel.cs" />
     <Compile Include="ViewModels\RequestSignInViewModel.cs" />
+    <Compile Include="ViewModels\SettingsControlViewModel.cs" />
     <Compile Include="ViewModels\SimplePopupViewModel.cs" />
     <Compile Include="ViewModels\UpdateAccountViewModel.cs" />
     <Compile Include="ViewModels\UpdateCredentialsViewModel.cs" />
@@ -142,6 +143,9 @@
     </Compile>
     <Compile Include="Views\RequestSignInPopup.xaml.cs">
       <DependentUpon>RequestSignInPopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SettingsControl.xaml.cs">
+      <DependentUpon>SettingsControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SimplePopup.xaml.cs">
       <DependentUpon>SimplePopup.xaml</DependentUpon>
@@ -227,6 +231,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\RequestSignInPopup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SettingsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
