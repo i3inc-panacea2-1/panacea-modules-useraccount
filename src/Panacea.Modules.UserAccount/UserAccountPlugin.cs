@@ -34,7 +34,7 @@ namespace Panacea.Modules.UserAccount
             if(_core.TryGetUiManager(out IUiManager ui))
             {
                 ui.AddNavigationBarControl(new NavigationButtonViewModel(_core.UserService, GetUserAccountManager()));
-                ui.AddSettingsControl(new SettingsControlViewModel());
+                ui.AddSettingsControl(new SettingsControlViewModel(_core.UserService));
             }
             return Task.CompletedTask;
         }

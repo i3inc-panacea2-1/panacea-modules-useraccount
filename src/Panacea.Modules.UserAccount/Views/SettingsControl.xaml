@@ -5,10 +5,54 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:Panacea.Modules.UserAccount.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    d:DesignHeight="450"
+    xmlns:mi="clr-namespace:Panacea.Controls;assembly=Panacea.Controls"
+    xmlns:multilinguality="clr-namespace:Panacea.Multilinguality;assembly=Panacea.Multilinguality"
     d:DesignWidth="800"
     mc:Ignorable="d">
-    <Grid>
-        <TextBlock Text="Current user" />
-    </Grid>
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis" />
+    </UserControl.Resources>
+    <StackPanel Margin="10" mi:Material.RelativeFontSizeRatio="1.0">
+        <TextBlock
+            Padding="5,1"
+            Foreground="white"
+            Text="{multilinguality:Translate 'User information',
+                                             'core'}" />
+
+        <TextBlock
+            Margin="0,6,0,6"
+            Padding="5,1"
+            mi:Material.RelativeFontSizeRatio="0.9"
+            DataContext="{Binding User}"
+            Foreground="white"
+            TextWrapping="Wrap">
+            <TextBlock.Inlines>
+                <Run Text="{multilinguality:Translate 'You are connected as', 'core'}" />
+                <Run />
+                <Run FontWeight="Bold" Text="{Binding LastName}" />
+                <Run />
+                <Run FontWeight="Bold" Text="{Binding FirstName}" />
+            </TextBlock.Inlines>
+        </TextBlock>
+        <Button
+            Margin="30,23"
+            Background="#8ab71b"
+            Content="{multilinguality:Translate 'Sign in',
+                                                'core'}"
+            Style="{DynamicResource PrimaryButton}" />
+        <UniformGrid Rows="1">
+            <Button
+                Margin="30,23"
+                Background="#8ab71b"
+                Content="{multilinguality:Translate 'My account',
+                                                    'core'}"
+                Style="{DynamicResource PrimaryButton}" />
+            <Button
+                Margin="30,23"
+                Background="{DynamicResource ColorError}"
+                Content="{multilinguality:Translate 'Sign out',
+                                                    'core'}"
+                Style="{DynamicResource PrimaryButton}" />
+        </UniformGrid>
+    </StackPanel>
 </UserControl>
