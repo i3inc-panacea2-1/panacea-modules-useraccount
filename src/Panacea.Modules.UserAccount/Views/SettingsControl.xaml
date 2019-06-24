@@ -2,6 +2,7 @@
     x:Class="Panacea.Modules.UserAccount.Views.SettingsControl"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converters="clr-namespace:Panacea.Modules.UserAccount.Converters"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:Panacea.Modules.UserAccount.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -11,8 +12,9 @@
     mc:Ignorable="d">
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVis" />
+        <converters:NotBooleanToVisibilityConverter x:Key="NotBooleanToVisibilityConverter" />
     </UserControl.Resources>
-    <StackPanel Margin="10" mi:Material.RelativeFontSizeRatio="1.0">
+    <StackPanel Margin="10">
         <TextBlock
             Padding="5,1"
             Foreground="white"
@@ -22,36 +24,46 @@
         <TextBlock
             Margin="0,6,0,6"
             Padding="5,1"
-            mi:Material.RelativeFontSizeRatio="0.9"
-            DataContext="{Binding User}"
+            FontSize="{DynamicResource FontSize-Small}"
             Foreground="white"
             TextWrapping="Wrap">
             <TextBlock.Inlines>
                 <Run Text="{multilinguality:Translate 'You are connected as', 'core'}" />
                 <Run />
-                <Run FontWeight="Bold" Text="{Binding LastName}" />
+                <Run FontWeight="Bold" Text="{Binding User.FirstName}" />
                 <Run />
-                <Run FontWeight="Bold" Text="{Binding FirstName}" />
+                <Run FontWeight="Bold" Text="{Binding User.LastName}" />
             </TextBlock.Inlines>
         </TextBlock>
-        <Button
-            Margin="30,23"
-            Background="#8ab71b"
-            Content="{multilinguality:Translate 'Sign in',
-                                                'core'}"
-            Style="{DynamicResource PrimaryButton}" />
-        <UniformGrid Rows="1">
+        <UniformGrid
+            Margin="10"
+            Rows="1"
+            Visibility="{Binding UserSignedIn, Converter={StaticResource NotBooleanToVisibilityConverter}}">
             <Button
-                Margin="30,23"
+                Background="#8ab71b"
+                Content="{multilinguality:Translate 'Sign in',
+                                                    'UserAccount'}"
+                Style="{DynamicResource PrimaryButton}" />
+
+            <Button
+                Background="{DynamicResource ColorInformation}"
+                Content="{multilinguality:Translate 'Register',
+                                                    'UserAccount'}"
+                Style="{DynamicResource PrimaryButton}" />
+        </UniformGrid>
+        <UniformGrid
+            Margin="10"
+            Rows="1"
+            Visibility="{Binding UserSignedIn, Converter={StaticResource BoolToVis}}">
+            <Button
                 Background="#8ab71b"
                 Content="{multilinguality:Translate 'My account',
-                                                    'core'}"
+                                                    'UserAccount'}"
                 Style="{DynamicResource PrimaryButton}" />
             <Button
-                Margin="30,23"
                 Background="{DynamicResource ColorError}"
                 Content="{multilinguality:Translate 'Sign out',
-                                                    'core'}"
+                                                    'UserAccount'}"
                 Style="{DynamicResource PrimaryButton}" />
         </UniformGrid>
     </StackPanel>

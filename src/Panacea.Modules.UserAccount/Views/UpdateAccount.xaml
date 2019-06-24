@@ -9,7 +9,6 @@
     xmlns:pcontrols="clr-namespace:Panacea.Controls;assembly=Panacea.Controls"
     d:DesignHeight="450"
     d:DesignWidth="800"
-    pcontrols:Material.RelativeFontSizeRatio="1.0"
     Background="White"
     mc:Ignorable="d">
     <Grid>
@@ -30,7 +29,7 @@
                     VerticalAlignment="Top">
                     <TextBlock
                         Margin="20"
-                        pcontrols:Material.RelativeFontSizeRatio="1.2"
+                        FontSize="{DynamicResource FontSize-Large}"
                         Text="{multilinguality:Translate 'Update your account information',
                                                          'core'}"
                         TextAlignment="Center" />

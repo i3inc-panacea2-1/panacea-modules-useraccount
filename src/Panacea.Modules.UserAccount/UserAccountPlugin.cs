@@ -21,6 +21,11 @@ namespace Panacea.Modules.UserAccount
 
         public Task BeginInit()
         {
+            if (_core.TryGetUiManager(out IUiManager ui))
+            {
+                ui.AddNavigationBarControl(new NavigationButtonViewModel(_core.UserService, GetUserAccountManager()));
+                ui.AddSettingsControl(new SettingsControlViewModel(_core.UserService));
+            }
             return Task.CompletedTask;
         }
 
@@ -31,11 +36,7 @@ namespace Panacea.Modules.UserAccount
 
         public Task EndInit()
         {
-            if(_core.TryGetUiManager(out IUiManager ui))
-            {
-                ui.AddNavigationBarControl(new NavigationButtonViewModel(_core.UserService, GetUserAccountManager()));
-                ui.AddSettingsControl(new SettingsControlViewModel(_core.UserService));
-            }
+           
             return Task.CompletedTask;
         }
 

@@ -125,8 +125,7 @@ namespace Panacea.Modules.UserAccount.ViewModels
                 }
                 else
                 {
-                    ShowWarning("Incorrect credentials");
-                    source?.SetResult(false);
+                    ShowWarning("Incorrect credentials", PopupType.Error);
                     return;
                 }
             });
@@ -150,11 +149,11 @@ namespace Panacea.Modules.UserAccount.ViewModels
             }
         }
 
-        async void ShowWarning(string s)
+        async void ShowWarning(string s, PopupType type = PopupType.Warning)
         {
             if (_core.TryGetUiManager(out IUiManager ui))
             {
-                await ui.ShowPopup(new WarningViewModel(s), "Login failed", PopupType.Warning);
+                await ui.ShowPopup(new WarningViewModel(s), "Login failed", type);
             }
         }
 

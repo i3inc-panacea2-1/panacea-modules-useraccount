@@ -10,7 +10,6 @@
     xmlns:pc="clr-namespace:Panacea.Controls;assembly=Panacea.Controls"
     d:DesignHeight="450"
     d:DesignWidth="800"
-    pc:Material.RelativeFontSizeRatio="1.0"
     Background="#f1f1f1"
     mc:Ignorable="d">
     <UserControl.Resources>
@@ -26,7 +25,7 @@
                 </Grid.RowDefinitions>
                 <TextBlock
                     Margin="10"
-                    pc:Material.RelativeFontSizeRatio="1.2"
+                    FontSize="{DynamicResource FontSize-Large}"
                     Text="{multilinguality:Translate 'My profile',
                                                      'core'}"
                     TextAlignment="Center" />
@@ -44,7 +43,7 @@
                             </Grid.RowDefinitions>
                             <TextBlock
                                 Margin="10"
-                                pc:Material.RelativeFontSizeRatio="1.3"
+                                FontSize="{DynamicResource FontSize-X-Large}"
                                 Text="{multilinguality:Translate 'User details',
                                                                  'core'}" />
 
@@ -92,7 +91,6 @@
                                         Margin="10,0"
                                         HorizontalAlignment="Right"
                                         VerticalAlignment="Center"
-                                        pc:Material.RelativeFontSizeRatio="1.0"
                                         Content="{multilinguality:Translate 'Last Name',
                                                                             'core'}" />
                                     <TextBlock
@@ -209,7 +207,7 @@
                             <RowDefinition Height="*" />
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
-                        <pc:Card Margin="5 0 5 5" Background="White">
+                        <pc:Card Margin="5,0,5,5" Background="White">
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto" />
@@ -217,7 +215,7 @@
                                 </Grid.RowDefinitions>
                                 <TextBlock
                                     Margin="10"
-                                    pc:Material.RelativeFontSizeRatio="1.3"
+                                    FontSize="{DynamicResource FontSize-X-Large}"
                                     Text="{multilinguality:Translate 'Services',
                                                                      'core'}" />
 
@@ -261,7 +259,6 @@
                                                             <TextBlock
                                                                 Margin="10,0,0,0"
                                                                 HorizontalAlignment="Left"
-                                                                pc:Material.RelativeFontSizeRatio="1.0"
                                                                 Text="{Binding RemainingQuantityText.Text}"
                                                                 TextWrapping="Wrap" />
                                                             <TextBlock
@@ -299,7 +296,10 @@
                                 </Grid>
                             </Grid>
                         </pc:Card>
-                        <pc:Card Margin="5 5 5 0" Background="White" Grid.Row="1">
+                        <pc:Card
+                            Grid.Row="1"
+                            Margin="5,5,5,0"
+                            Background="White">
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto" />
@@ -307,7 +307,7 @@
                                 </Grid.RowDefinitions>
                                 <TextBlock
                                     Margin="10"
-                                    pc:Material.RelativeFontSizeRatio="1.3"
+                                    FontSize="{DynamicResource FontSize-X-Large}"
                                     Text="{multilinguality:Translate 'Payment history',
                                                                      'core'}" />
 

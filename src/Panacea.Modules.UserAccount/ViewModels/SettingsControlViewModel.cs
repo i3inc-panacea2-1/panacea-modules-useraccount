@@ -25,16 +25,28 @@ namespace Panacea.Modules.UserAccount.ViewModels
             }
         }
 
+        bool _userSignedIn;
+        public bool UserSignedIn
+        {
+            get => _userSignedIn;
+            set
+            {
+                _userSignedIn = value;
+                OnPropertyChanged();
+            }
+        }
+
         public SettingsControlViewModel(IUserService service)
         {
             _service = service;
-            User = _service.User;
         }
 
         public override void Activate()
         {
             _service.UserLoggedIn += _service_UserLoggedIn;
             _service.UserLoggedOut += _service_UserLoggedOut;
+            User = _service.User;
+            UserSignedIn = _service.User.Id != null;
         }
 
         public override void Deactivate()
@@ -46,12 +58,14 @@ namespace Panacea.Modules.UserAccount.ViewModels
         private Task _service_UserLoggedOut(IUser user)
         {
             User = _service.User;
+            UserSignedIn = _service.User.Id != null;
             return Task.CompletedTask;
         }
 
         private Task _service_UserLoggedIn(IUser user)
         {
             User = _service.User;
+            UserSignedIn = _service.User.Id != null;
             return Task.CompletedTask;
         }
     }

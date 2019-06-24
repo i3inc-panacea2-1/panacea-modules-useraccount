@@ -73,7 +73,6 @@
                                     Margin="20"
                                     HorizontalAlignment="Center"
                                     VerticalAlignment="Center"
-                                    pcontrols:Material.RelativeFontSizeRatio="1.0"
                                     ContentSource="Header" />
                             </Grid>
                             <ControlTemplate.Triggers>
@@ -132,7 +131,7 @@
                             VerticalContentAlignment="Center"
                             pcontrols:Material.Label="{multilinguality:Translate 'Date of Birth',
                                                                                  'core'}"
-                            pcontrols:Material.RelativeFontSizeRatio="1.1"
+                            FontSize="{DynamicResource FontSize-Large}"
                             FontWeight="Light"
                             IsReadOnly="True" />
 
@@ -143,7 +142,7 @@
                             VerticalContentAlignment="Center"
                             pcontrols:Material.Label="{multilinguality:Translate 'Password',
                                                                                  'core'}"
-                            pcontrols:Material.RelativeFontSizeRatio="1.1"
+                            FontSize="{DynamicResource FontSize-Large}"
                             InputScope="Password" />
 
 
@@ -153,7 +152,7 @@
                             HorizontalAlignment="Right"
                             VerticalAlignment="Center"
                             pcontrols:Material.AsyncCommand="{Binding LoginWithDateCommand}"
-                            pcontrols:Material.RelativeFontSizeRatio="1.1"
+                            FontSize="{DynamicResource FontSize-Large}"
                             CommandParameter="{Binding ElementName=passdob}"
                             Content="{multilinguality:Translate 'Sign in',
                                                                 'core'}"
@@ -181,7 +180,7 @@
                             VerticalContentAlignment="Center"
                             pcontrols:Material.Label="{multilinguality:Translate 'Email',
                                                                                  'core'}"
-                            pcontrols:Material.RelativeFontSizeRatio="1.1"
+                            FontSize="{DynamicResource FontSize-Large}"
                             Text="{Binding Email}" />
 
 
@@ -193,7 +192,7 @@
                             VerticalContentAlignment="Center"
                             pcontrols:Material.Label="{multilinguality:Translate 'Password',
                                                                                  'core'}"
-                            pcontrols:Material.RelativeFontSizeRatio="1.1" />
+                            FontSize="{DynamicResource FontSize-Large}" />
                         <Button
                             Name="btnLogin"
                             Grid.Column="1"
@@ -201,7 +200,7 @@
                             HorizontalAlignment="Right"
                             VerticalAlignment="Center"
                             pcontrols:Material.AsyncCommand="{Binding LoginWithEmailCommand}"
-                            pcontrols:Material.RelativeFontSizeRatio="1.1"
+                            FontSize="{DynamicResource FontSize-Large}"
                             CommandParameter="{Binding ElementName=pass}"
                             Content="{multilinguality:Translate 'Sign in',
                                                                 'core'}"
@@ -227,7 +226,7 @@
                     <TextBlock
                         Name="cardid"
                         Margin="20"
-                        pcontrols:Material.RelativeFontSizeRatio="1.1"
+                        FontSize="{DynamicResource FontSize-Large}"
                         Text="{multilinguality:Translate 'tap your card to sign in',
                                                          'core'}"
                         TextAlignment="Center"
@@ -248,7 +247,7 @@
             HorizontalAlignment="Center"
             VerticalAlignment="Bottom">
             <Hyperlink Name="register" Command="{Binding RegisterCommand}">
-                <TextBlock pcontrols:Material.RelativeFontSizeRatio="1.0" Text="{multilinguality:Translate 'If you do not have an account, click here to register', 'core'}" />
+                <TextBlock Text="{multilinguality:Translate 'If you do not have an account, click here to register', 'core'}" />
             </Hyperlink>
         </TextBlock>
         <TextBlock
@@ -257,7 +256,7 @@
             HorizontalAlignment="Center"
             VerticalAlignment="Bottom">
             <Hyperlink Name="forgotPass" Command="{Binding ForgotPasswordCommand}">
-                <TextBlock pcontrols:Material.RelativeFontSizeRatio="1.0" Text="{multilinguality:Translate 'Forgot my passcode', 'core'}" />
+                <TextBlock Text="{multilinguality:Translate 'Forgot my passcode', 'core'}" />
             </Hyperlink>
         </TextBlock>
     </Grid>

@@ -13,7 +13,6 @@
         <TextBlock
             Margin="10"
             VerticalAlignment="Center"
-            pcontrols:Material.RelativeFontSizeRatio="1.0"
             Text="{Binding Text}"
             TextAlignment="Center" />
     </Grid>
