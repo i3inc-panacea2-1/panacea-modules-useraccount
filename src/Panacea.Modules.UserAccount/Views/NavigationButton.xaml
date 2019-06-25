@@ -20,7 +20,7 @@
             pcontrols:Material.Icon="person"
             Command="{Binding ClickCommand}"
             Text="{multilinguality:Translate 'Sign in',
-                                             'core'}"
+                                             'UserAccount'}"
             TextVisibility="Visible"
             Visibility="{Binding SignedIn, Converter={StaticResource NotBoolToVis}}"/>
 
@@ -28,7 +28,7 @@
             pcontrols:Material.Icon="person"
             Command="{Binding ClickCommand}"
             Text="{multilinguality:Translate 'My Account',
-                                             'core'}"
+                                             'UserAccount'}"
             TextVisibility="Visible"
             Visibility="{Binding SignedIn, Converter={StaticResource BoolToVis}}" />
     </Grid>

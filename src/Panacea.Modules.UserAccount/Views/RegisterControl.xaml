@@ -18,7 +18,7 @@
                     Margin="20,20,20,10"
                     FontSize="{DynamicResource FontSize-Large}"
                     Text="{multilinguality:Translate 'Please fill your personal information',
-                                                     'core'}"
+                                                     'UserAccount'}"
                     TextAlignment="Center" />
                 <Grid Margin="10" VerticalAlignment="Top">
                     <Grid.RowDefinitions>
@@ -48,7 +48,7 @@
                             Margin="0,0,2,0"
                             VerticalContentAlignment="Center"
                             controls:Material.Label="{multilinguality:Translate 'First Name',
-                                                                                'core'}"
+                                                                                'UserAccount'}"
                             MaxLength="30"
                             Text="{Binding FirstName}" />
                         <TextBox
@@ -57,7 +57,7 @@
                             Margin="2,0,0,0"
                             VerticalContentAlignment="Center"
                             controls:Material.Label="{multilinguality:Translate 'Last Name',
-                                                                                'core'}"
+                                                                                'UserAccount'}"
                             MaxLength="30"
                             Text="{Binding LastName}" />
 
@@ -70,7 +70,7 @@
                         Margin="20,0,0,0"
                         VerticalAlignment="Center"
                         controls:Material.Label="{multilinguality:Translate 'Date of birth',
-                                                                            'core'}"
+                                                                            'UserAccount'}"
                         IsReadOnly="True"
                         Text="{Binding DateOfBirth}" />
 
@@ -81,7 +81,7 @@
                         Margin="3,0"
                         VerticalContentAlignment="Center"
                         controls:Material.Label="{multilinguality:Translate 'Security question',
-                                                                            'core'}"
+                                                                            'UserAccount'}"
                         ItemsSource="{Binding Questions}"
                         SelectedItem="{Binding Question}">
                         <ComboBox.ItemTemplate>
@@ -97,7 +97,7 @@
                         Margin="20,0"
                         VerticalContentAlignment="Center"
                         controls:Material.Label="{multilinguality:Translate 'Security answer',
-                                                                            'core'}"
+                                                                            'UserAccount'}"
                         MaxLength="30"
                         Text="{Binding Answer}" />
 
@@ -107,7 +107,7 @@
                         Margin="3,0,0,0"
                         VerticalContentAlignment="Center"
                         controls:Material.Label="{multilinguality:Translate 'Telephone (optional)',
-                                                                            'core'}"
+                                                                            'UserAccount'}"
                         MaxLength="15"
                         Text="{Binding PhoneNumber}" />
                     <TextBox
@@ -117,7 +117,7 @@
                         Margin="20,0,0,0"
                         VerticalContentAlignment="Center"
                         controls:Material.Label="{multilinguality:Translate 'Email (optional)',
-                                                                            'core'}"
+                                                                            'UserAccount'}"
                         MaxLength="80" />
                     <Button
                         Grid.Row="3"
@@ -136,16 +136,16 @@
                         <TextBlock
                             Margin="10"
                             Text="{multilinguality:Translate 'Please tap your hospital card now!',
-                                                             'core'}"
+                                                             'UserAccount'}"
                             TextAlignment="Left"
                             TextWrapping="Wrap"
                             Visibility="Collapsed" />
 
                         <TextBlock Margin="3,10,0,0" TextAlignment="Left">
                             <TextBlock.Inlines>
-                                <Run Text="{multilinguality:Translate 'Already a user?', 'core'}" />
+                                <Run Text="{multilinguality:Translate 'Already a user?', 'UserAccount'}" />
                                 <Hyperlink Command="{Binding LoginCommand}">
-                                    <TextBlock Text="{multilinguality:Translate 'Sign in', 'core'}" />
+                                    <TextBlock Text="{multilinguality:Translate 'Sign in', 'UserAccount'}" />
                                 </Hyperlink>
                             </TextBlock.Inlines>
                         </TextBlock>

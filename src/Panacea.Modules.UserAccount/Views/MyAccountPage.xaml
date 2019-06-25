@@ -27,7 +27,7 @@
                     Margin="10"
                     FontSize="{DynamicResource FontSize-Large}"
                     Text="{multilinguality:Translate 'My profile',
-                                                     'core'}"
+                                                     'UserAccount'}"
                     TextAlignment="Center" />
 
                 <Grid Grid.Row="1" Margin="5,5">
@@ -45,7 +45,7 @@
                                 Margin="10"
                                 FontSize="{DynamicResource FontSize-X-Large}"
                                 Text="{multilinguality:Translate 'User details',
-                                                                 'core'}" />
+                                                                 'UserAccount'}" />
 
                             <StackPanel
                                 Grid.Row="1"
@@ -76,7 +76,7 @@
                                         HorizontalAlignment="Right"
                                         VerticalAlignment="Center"
                                         Content="{multilinguality:Translate 'First Name',
-                                                                            'core'}"
+                                                                            'UserAccount'}"
                                         FontSize="{DynamicResource FontSize-Normal}" />
                                     <TextBlock
                                         Grid.Row="0"
@@ -92,7 +92,7 @@
                                         HorizontalAlignment="Right"
                                         VerticalAlignment="Center"
                                         Content="{multilinguality:Translate 'Last Name',
-                                                                            'core'}" />
+                                                                            'UserAccount'}" />
                                     <TextBlock
                                         Name="lastName"
                                         Grid.Row="1"
@@ -107,7 +107,7 @@
                                         HorizontalAlignment="Right"
                                         VerticalAlignment="Center"
                                         Content="{multilinguality:Translate 'Date of birth',
-                                                                            'core'}" />
+                                                                            'UserAccount'}" />
 
                                     <TextBlock
                                         Name="txtdob"
@@ -124,7 +124,7 @@
                                         HorizontalAlignment="Right"
                                         VerticalAlignment="Center"
                                         Content="{multilinguality:Translate 'Email',
-                                                                            'core'}" />
+                                                                            'UserAccount'}" />
                                     <TextBlock
                                         Name="email"
                                         Grid.Row="7"
@@ -140,7 +140,7 @@
                                         HorizontalAlignment="Right"
                                         VerticalAlignment="Center"
                                         Content="{multilinguality:Translate 'Telephone',
-                                                                            'core'}" />
+                                                                            'UserAccount'}" />
                                     <TextBlock
                                         Name="phoneNumber"
                                         Grid.Row="8"
@@ -156,7 +156,7 @@
                                         TextAlignment="Center">
                                         <TextBlock.Inlines>
                                             <Hyperlink Command="{Binding ChangeInfoCommand}">
-                                                <TextBlock Text="{multilinguality:Translate 'Change account information', 'core'}" />
+                                                <TextBlock Text="{multilinguality:Translate 'Change account information', 'UserAccount'}" />
                                             </Hyperlink>
                                         </TextBlock.Inlines>
                                     </TextBlock>
@@ -167,7 +167,7 @@
                                         TextWrapping="Wrap">
                                         <TextBlock.Inlines>
                                             <Hyperlink Command="{Binding ChangeCredentialsCommand}">
-                                                <TextBlock Text="{multilinguality:Translate 'Change your credentials', 'core'}" />
+                                                <TextBlock Text="{multilinguality:Translate 'Change your credentials', 'UserAccount'}" />
                                             </Hyperlink>
                                         </TextBlock.Inlines>
                                     </TextBlock>
@@ -178,7 +178,7 @@
                                         TextWrapping="Wrap">
                                         <TextBlock.Inlines>
                                             <Hyperlink Command="{Binding ResetPasswordCommand}">
-                                                <TextBlock Text="{multilinguality:Translate 'Reset your passcode', 'core'}" />
+                                                <TextBlock Text="{multilinguality:Translate 'Reset your passcode', 'UserAccount'}" />
                                             </Hyperlink>
                                         </TextBlock.Inlines>
                                     </TextBlock>
@@ -193,7 +193,7 @@
                                     Background="#12a5f7"
                                     Command="{Binding SignoutCommand}"
                                     Content="{multilinguality:Translate 'Sign out',
-                                                                        'core'}"
+                                                                        'UserAccount'}"
                                     Style="{DynamicResource PrimaryButton}" />
                             </StackPanel>
 
@@ -217,7 +217,7 @@
                                     Margin="10"
                                     FontSize="{DynamicResource FontSize-X-Large}"
                                     Text="{multilinguality:Translate 'Services',
-                                                                     'core'}" />
+                                                                     'UserAccount'}" />
 
 
                                 <Grid Grid.Row="1">
@@ -278,7 +278,7 @@
                                         Grid.Row="1"
                                         VerticalAlignment="Center"
                                         Text="{multilinguality:Translate 'No service',
-                                                                         'core'}"
+                                                                         'UserAccount'}"
                                         TextAlignment="Center"
                                         Visibility="{Binding ElementName=ServicesControl, Path=HasItems, Converter={StaticResource ServicesControl}}" />
                                     <Button
@@ -289,7 +289,7 @@
                                         Background="{DynamicResource ColorSuccess}"
                                         Command="{Binding BuyServiceCommand}"
                                         Content="{multilinguality:Translate 'Buy service',
-                                                                            'core'}"
+                                                                            'UserAccount'}"
                                         Style="{DynamicResource PrimaryButton}"
                                         Visibility="{Binding ServicesVisible}" />
 
@@ -309,7 +309,7 @@
                                     Margin="10"
                                     FontSize="{DynamicResource FontSize-X-Large}"
                                     Text="{multilinguality:Translate 'Payment history',
-                                                                     'core'}" />
+                                                                     'UserAccount'}" />
 
 
 
@@ -371,7 +371,7 @@
                                         HorizontalAlignment="Center"
                                         Command="{Binding RequestRefundCommand}"
                                         Content="{multilinguality:Translate 'Request refund',
-                                                                            'core'}"
+                                                                            'UserAccount'}"
                                         Visibility="{Binding AllowRefunds, Converter={StaticResource Converter}}" />
                                 </Grid>
                             </Grid>

@@ -43,7 +43,7 @@ namespace Panacea.Modules.UserAccount.ViewModels
                         }
                         catch
                         {
-                            _ui.Toast(new Translator("core").Translate("Unable to save new information due to network problems. Please try again later."));
+                            _ui.Toast(new Translator("UserAccount").Translate("Unable to save new information due to network problems. Please try again later."));
                         }
                     });
                 }

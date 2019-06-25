@@ -72,7 +72,7 @@ namespace Panacea.Modules.UserAccount.ViewModels
                     {
                         _ = _ui.ShowPopup(
                             new SimplePopupViewModel(
-                                new Translator("core").Translate("Last and first names are required.")),
+                                new Translator("UserAccount").Translate("Last and first names are required.")),
                             null,
                             PopupType.Error);
                         return;
@@ -93,7 +93,7 @@ namespace Panacea.Modules.UserAccount.ViewModels
                             {
                                 _ = ui.ShowPopup(
                                     new SimplePopupViewModel(
-                                        new Translator("core").Translate("Your account has been updated!")),
+                                        new Translator("UserAccount").Translate("Your account has been updated!")),
                                     null,
                                     PopupType.Information);
                                 oldFirstName = FirstName;
@@ -104,7 +104,7 @@ namespace Panacea.Modules.UserAccount.ViewModels
                             {
                                 _ = ui.ShowPopup(
                                     new SimplePopupViewModel(
-                                        new Translator("core").Translate("Your account was not updated. Please try again later.")),
+                                        new Translator("UserAccount").Translate("Your account was not updated. Please try again later.")),
                                     null,
                                     PopupType.Error);
                                 FirstName = oldFirstName;
@@ -117,7 +117,7 @@ namespace Panacea.Modules.UserAccount.ViewModels
                         {
                             _ = ui.ShowPopup(
                                 new SimplePopupViewModel(
-                                    new Translator("core").Translate("Your account was not updated. Please try again later.")),
+                                    new Translator("UserAccount").Translate("Your account was not updated. Please try again later.")),
                                 null,
                                 PopupType.Error);
                             FirstName = oldFirstName;

@@ -16,7 +16,7 @@ namespace Panacea.Modules.UserAccount.ViewModels
     [View(typeof(ForgotPassword))]
     public class ForgotPasswordViewModel : ViewModelBase
     {
-        readonly Translator translator = new Translator("core");
+        readonly Translator translator = new Translator("UserAccount");
         PanaceaServices _core;
         private readonly TaskCompletionSource<bool> _src;
         private async Task<bool> GetSecurityQuestionsAsync()

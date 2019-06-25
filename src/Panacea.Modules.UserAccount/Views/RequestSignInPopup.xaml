@@ -36,7 +36,7 @@
                 Margin="5"
                 FontSize="{DynamicResource FontSize-Large}"
                 Text="{multilinguality:Translate 'Accounts are free and protect your privacy online.',
-                                                 'core'}"
+                                                 'UserAccount'}"
                 TextAlignment="Center" />
             <Button
                 Grid.Row="3"
@@ -46,16 +46,16 @@
                 Background="{DynamicResource ColorSuccess}"
                 Command="{Binding CreateAccountCommand}"
                 Content="{multilinguality:Translate 'Create account',
-                                                    'core'}"
+                                                    'UserAccount'}"
                 Foreground="White" />
             <TextBlock
                 Grid.Row="4"
                 Margin="10"
                 TextAlignment="Center">
                 <TextBlock.Inlines>
-                    <Run Text="{multilinguality:Translate 'Already a user?', 'core'}" />
+                    <Run Text="{multilinguality:Translate 'Already a user?', 'UserAccount'}" />
                     <Hyperlink Command="{Binding SignInCommand}">
-                        <TextBlock Text="{multilinguality:Translate 'Sign in', 'core'}" />
+                        <TextBlock Text="{multilinguality:Translate 'Sign in', 'UserAccount'}" />
                     </Hyperlink>
                 </TextBlock.Inlines>
             </TextBlock>

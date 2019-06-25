@@ -73,7 +73,7 @@ namespace Panacea.Modules.UserAccount.ViewModels
                         }
                         catch
                         {
-                            _ui.Toast(new Translator("core").Translate("Unable to save new information due to network problems. Please try again later."));
+                            _ui.Toast(new Translator("UserAccount").Translate("Unable to save new information due to network problems. Please try again later."));
                         }
                     });
                 }
@@ -89,7 +89,7 @@ namespace Panacea.Modules.UserAccount.ViewModels
             errorsPopup.Errors = e;
             if(_core.TryGetUiManager(out IUiManager _ui))
             {
-                _ui.ShowPopup(errorsPopup, new TranslatableObject("Change credentials failed", new Translator("core")).Text, PopupType.Warning);
+                _ui.ShowPopup(errorsPopup, new TranslatableObject("Change credentials failed", new Translator("UserAccount")).Text, PopupType.Warning);
             } else
             {
                 _core.Logger.Error(this, "ui manager not loaded");

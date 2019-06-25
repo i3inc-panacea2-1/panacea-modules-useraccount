@@ -20,7 +20,7 @@
             Padding="5,1"
             Foreground="white"
             Text="{multilinguality:Translate 'User information',
-                                             'core'}" />
+                                             'UserAccount'}" />
 
         <TextBlock
             Margin="0,6,0,6"
@@ -29,7 +29,7 @@
             Foreground="white"
             TextWrapping="Wrap">
             <TextBlock.Inlines>
-                <Run Text="{multilinguality:Translate 'You are connected as', 'core'}" />
+                <Run Text="{multilinguality:Translate 'You are connected as', 'UserAccount'}" />
                 <Run />
                 <Run FontWeight="Bold" Text="{Binding User.FirstName}" />
                 <Run />

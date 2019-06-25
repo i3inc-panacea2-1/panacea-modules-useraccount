@@ -109,7 +109,7 @@
 
                 </Style>
             </TabControl.Resources>
-            <TabItem Name="DobTab" Header="{multilinguality:Translate 'Sign in with your date of birth', 'core'}">
+            <TabItem Name="DobTab" Header="{multilinguality:Translate 'Sign in with your date of birth', 'UserAccount'}">
                 <Grid VerticalAlignment="Top">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1*" />
@@ -130,7 +130,7 @@
                             HorizontalContentAlignment="Center"
                             VerticalContentAlignment="Center"
                             pcontrols:Material.Label="{multilinguality:Translate 'Date of Birth',
-                                                                                 'core'}"
+                                                                                 'UserAccount'}"
                             FontSize="{DynamicResource FontSize-Large}"
                             FontWeight="Light"
                             IsReadOnly="True" />
@@ -141,7 +141,7 @@
                             Name="passdob"
                             VerticalContentAlignment="Center"
                             pcontrols:Material.Label="{multilinguality:Translate 'Password',
-                                                                                 'core'}"
+                                                                                 'UserAccount'}"
                             FontSize="{DynamicResource FontSize-Large}"
                             InputScope="Password" />
 
@@ -155,13 +155,13 @@
                             FontSize="{DynamicResource FontSize-Large}"
                             CommandParameter="{Binding ElementName=passdob}"
                             Content="{multilinguality:Translate 'Sign in',
-                                                                'core'}"
+                                                                'UserAccount'}"
                             Style="{DynamicResource PrimaryButton}" />
 
                     </StackPanel>
                 </Grid>
             </TabItem>
-            <TabItem Name="EmailTab" Header="{multilinguality:Translate 'Sign in with your credentials', 'core'}">
+            <TabItem Name="EmailTab" Header="{multilinguality:Translate 'Sign in with your credentials', 'UserAccount'}">
                 <Grid Width="auto" VerticalAlignment="Top">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1*" />
@@ -179,7 +179,7 @@
                             Name="userid"
                             VerticalContentAlignment="Center"
                             pcontrols:Material.Label="{multilinguality:Translate 'Email',
-                                                                                 'core'}"
+                                                                                 'UserAccount'}"
                             FontSize="{DynamicResource FontSize-Large}"
                             Text="{Binding Email}" />
 
@@ -191,7 +191,7 @@
                             Grid.Row="1"
                             VerticalContentAlignment="Center"
                             pcontrols:Material.Label="{multilinguality:Translate 'Password',
-                                                                                 'core'}"
+                                                                                 'UserAccount'}"
                             FontSize="{DynamicResource FontSize-Large}" />
                         <Button
                             Name="btnLogin"
@@ -203,7 +203,7 @@
                             FontSize="{DynamicResource FontSize-Large}"
                             CommandParameter="{Binding ElementName=pass}"
                             Content="{multilinguality:Translate 'Sign in',
-                                                                'core'}"
+                                                                'UserAccount'}"
                             Style="{DynamicResource PrimaryButton}" />
                     </StackPanel>
 
@@ -213,7 +213,7 @@
             <TabItem
                 Name="CardLoginItem"
                 Header="{multilinguality:Translate 'Sign in using your card',
-                                                   'core'}"
+                                                   'UserAccount'}"
                 Visibility="Collapsed">
                 <Grid
                     Name="cardPanel"
@@ -228,7 +228,7 @@
                         Margin="20"
                         FontSize="{DynamicResource FontSize-Large}"
                         Text="{multilinguality:Translate 'tap your card to sign in',
-                                                         'core'}"
+                                                         'UserAccount'}"
                         TextAlignment="Center"
                         TextWrapping="Wrap" />
                     <Image
@@ -247,7 +247,7 @@
             HorizontalAlignment="Center"
             VerticalAlignment="Bottom">
             <Hyperlink Name="register" Command="{Binding RegisterCommand}">
-                <TextBlock Text="{multilinguality:Translate 'If you do not have an account, click here to register', 'core'}" />
+                <TextBlock Text="{multilinguality:Translate 'If you do not have an account, click here to register', 'UserAccount'}" />
             </Hyperlink>
         </TextBlock>
         <TextBlock
@@ -256,7 +256,7 @@
             HorizontalAlignment="Center"
             VerticalAlignment="Bottom">
             <Hyperlink Name="forgotPass" Command="{Binding ForgotPasswordCommand}">
-                <TextBlock Text="{multilinguality:Translate 'Forgot my passcode', 'core'}" />
+                <TextBlock Text="{multilinguality:Translate 'Forgot my passcode', 'UserAccount'}" />
             </Hyperlink>
         </TextBlock>
     </Grid>
