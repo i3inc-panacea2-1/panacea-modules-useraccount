@@ -1,4 +1,7 @@
-﻿using Panacea.Core;
+﻿using Panacea.Controls;
+using Panacea.Core;
+using Panacea.Modularity.UiManager;
+using Panacea.Modularity.UserAccount;
 using Panacea.Modules.UserAccount.Views;
 using Panacea.Mvvm;
 using System;
@@ -6,11 +9,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace Panacea.Modules.UserAccount.ViewModels
 {
     [View(typeof(SettingsControl))]
-    public class SettingsControlViewModel : ViewModelBase
+    public class SettingsControlViewModel : SettingsControlViewModelBase
     {
         private readonly IUserService _service;
 
@@ -36,9 +40,29 @@ namespace Panacea.Modules.UserAccount.ViewModels
             }
         }
 
-        public SettingsControlViewModel(IUserService service)
+        public SettingsControlViewModel(IUserService service, IUserAccountManager account)
         {
             _service = service;
+            SignInCommand = new RelayCommand(args =>
+            {
+                OnClose();
+                account.LoginAsync();
+            });
+            RegisterCommand = new RelayCommand(args =>
+            {
+                OnClose();
+                account.RegisterAsync();
+            });
+            SignOutCommand = new RelayCommand(args =>
+            {
+                OnClose();
+                account.LogoutAsync();
+            });
+            MyAccountCommand = new RelayCommand(args =>
+            {
+                OnClose();
+                account.NavigateToMyAccount();
+            });
         }
 
         public override void Activate()
@@ -68,5 +92,11 @@ namespace Panacea.Modules.UserAccount.ViewModels
             UserSignedIn = _service.User.Id != null;
             return Task.CompletedTask;
         }
+
+        public ICommand SignInCommand { get; }
+
+        public ICommand SignOutCommand { get; }
+        public ICommand MyAccountCommand { get; }
+        public ICommand RegisterCommand { get; }
     }
 }

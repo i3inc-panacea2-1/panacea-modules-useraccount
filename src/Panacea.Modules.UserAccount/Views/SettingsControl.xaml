@@ -9,8 +9,8 @@
     xmlns:mi="clr-namespace:Panacea.Controls;assembly=Panacea.Controls"
     xmlns:multilinguality="clr-namespace:Panacea.Multilinguality;assembly=Panacea.Multilinguality"
     d:DesignWidth="800"
-    mc:Ignorable="d"
-    DockPanel.ZIndex="10">
+    DockPanel.ZIndex="10"
+    mc:Ignorable="d">
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVis" />
         <converters:NotBooleanToVisibilityConverter x:Key="NotBooleanToVisibilityConverter" />
@@ -42,12 +42,14 @@
             Visibility="{Binding UserSignedIn, Converter={StaticResource NotBooleanToVisibilityConverter}}">
             <Button
                 Background="#8ab71b"
+                Command="{Binding SignInCommand}"
                 Content="{multilinguality:Translate 'Sign in',
                                                     'UserAccount'}"
                 Style="{DynamicResource PrimaryButton}" />
 
             <Button
                 Background="{DynamicResource ColorInformation}"
+                Command="{Binding RegisterCommand}"
                 Content="{multilinguality:Translate 'Register',
                                                     'UserAccount'}"
                 Style="{DynamicResource PrimaryButton}" />
@@ -58,11 +60,13 @@
             Visibility="{Binding UserSignedIn, Converter={StaticResource BoolToVis}}">
             <Button
                 Background="#8ab71b"
+                Command="{Binding MyAccountCommand}"
                 Content="{multilinguality:Translate 'My account',
                                                     'UserAccount'}"
                 Style="{DynamicResource PrimaryButton}" />
             <Button
                 Background="{DynamicResource ColorError}"
+                Command="{Binding SignOutCommand}"
                 Content="{multilinguality:Translate 'Sign out',
                                                     'UserAccount'}"
                 Style="{DynamicResource PrimaryButton}" />
