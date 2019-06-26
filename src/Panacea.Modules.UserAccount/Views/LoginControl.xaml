@@ -142,7 +142,8 @@
                             pcontrols:Material.Label="{multilinguality:Translate 'Password',
                                                                                  'UserAccount'}"
                             FontSize="{DynamicResource FontSize-Large}"
-                            InputScope="Number" />
+                            InputScope="Number" 
+                            MaxLength="4"/>
 
 
                         <Button
@@ -191,7 +192,8 @@
                             pcontrols:Material.Label="{multilinguality:Translate 'Password',
                                                                                  'UserAccount'}"
                             FontSize="{DynamicResource FontSize-Large}"
-                            InputScope="Number" />
+                            InputScope="Number"
+                            MaxLength="4"/>
                         <Button
                             Name="btnLogin"
                             Grid.Column="1"
