@@ -53,7 +53,7 @@ namespace Panacea.Modules.UserAccount.ViewModels
                 try
                 {
                     var password = (arg as PasswordBox).Password;
-                    if (string.IsNullOrEmpty(Date))
+                    if (string.IsNullOrEmpty(Date.ToString()))
                     {
                         ShowWarning("Please provide a date of birth");
                         return;
@@ -63,7 +63,7 @@ namespace Panacea.Modules.UserAccount.ViewModels
                         ShowWarning("Please provide a password");
                         return;
                     }
-                    if (await DoWhileBusy(() => core.UserService.LoginAsync(DateTime.Parse(Date), password)))
+                    if (await DoWhileBusy(() => core.UserService.LoginAsync(Date, password)))
                     {
                         source?.SetResult(true);
                         if (_core.TryGetUiManager(out IUiManager ui))
@@ -159,7 +159,7 @@ namespace Panacea.Modules.UserAccount.ViewModels
 
         public string Email { get; set; }
 
-        public string Date { get; set; }
+        public DateTime Date { get; set; } = DateTime.Now;
 
         private readonly PanaceaServices _core;
         private readonly TaskCompletionSource<bool> _source;

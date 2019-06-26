@@ -7,8 +7,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:multilinguality="clr-namespace:Panacea.Multilinguality;assembly=Panacea.Multilinguality"
     xmlns:pcontrols="clr-namespace:Panacea.Controls;assembly=Panacea.Controls"
-    d:DesignHeight="450"
-    d:DesignWidth="800"
+    d:DesignHeight="550"
+    d:DesignWidth="900"
     Background="White"
     mc:Ignorable="d">
     <UserControl.Resources>
@@ -127,23 +127,22 @@
                             Name="txtdob"
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Stretch"
-                            HorizontalContentAlignment="Center"
-                            VerticalContentAlignment="Center"
                             pcontrols:Material.Label="{multilinguality:Translate 'Date of Birth',
                                                                                  'UserAccount'}"
                             FontSize="{DynamicResource FontSize-Large}"
-                            FontWeight="Light"
-                            IsReadOnly="True" />
+                            InputScope="Date"
+                            IsReadOnly="True"
+                            Tag="{Binding Date}"
+                            Text="{Binding RelativeSource={RelativeSource Self}, Path=Tag, StringFormat=D}" />
 
 
 
                         <PasswordBox
                             Name="passdob"
-                            VerticalContentAlignment="Center"
                             pcontrols:Material.Label="{multilinguality:Translate 'Password',
                                                                                  'UserAccount'}"
                             FontSize="{DynamicResource FontSize-Large}"
-                            InputScope="Password" />
+                            InputScope="Number" />
 
 
                         <Button
@@ -152,10 +151,10 @@
                             HorizontalAlignment="Right"
                             VerticalAlignment="Center"
                             pcontrols:Material.AsyncCommand="{Binding LoginWithDateCommand}"
-                            FontSize="{DynamicResource FontSize-Large}"
                             CommandParameter="{Binding ElementName=passdob}"
                             Content="{multilinguality:Translate 'Sign in',
                                                                 'UserAccount'}"
+                            FontSize="{DynamicResource FontSize-Large}"
                             Style="{DynamicResource PrimaryButton}" />
 
                     </StackPanel>
@@ -177,10 +176,10 @@
 
                         <TextBox
                             Name="userid"
-                            VerticalContentAlignment="Center"
                             pcontrols:Material.Label="{multilinguality:Translate 'Email',
                                                                                  'UserAccount'}"
                             FontSize="{DynamicResource FontSize-Large}"
+                            InputScope="EmailUserName"
                             Text="{Binding Email}" />
 
 
@@ -189,10 +188,10 @@
                         <PasswordBox
                             Name="pass"
                             Grid.Row="1"
-                            VerticalContentAlignment="Center"
                             pcontrols:Material.Label="{multilinguality:Translate 'Password',
                                                                                  'UserAccount'}"
-                            FontSize="{DynamicResource FontSize-Large}" />
+                            FontSize="{DynamicResource FontSize-Large}"
+                            InputScope="Number" />
                         <Button
                             Name="btnLogin"
                             Grid.Column="1"
@@ -200,10 +199,10 @@
                             HorizontalAlignment="Right"
                             VerticalAlignment="Center"
                             pcontrols:Material.AsyncCommand="{Binding LoginWithEmailCommand}"
-                            FontSize="{DynamicResource FontSize-Large}"
                             CommandParameter="{Binding ElementName=pass}"
                             Content="{multilinguality:Translate 'Sign in',
                                                                 'UserAccount'}"
+                            FontSize="{DynamicResource FontSize-Large}"
                             Style="{DynamicResource PrimaryButton}" />
                     </StackPanel>
 
@@ -235,8 +234,8 @@
                         Name="cardimg"
                         Grid.Row="1"
                         MaxWidth="300"
-                        Margin="20"
-                        Source="pack://application:,,,/Panacea;component/Resources/Images/Icons/tapcard.png" />
+                        Margin="20" />
+                    <!--  ==Source="pack://application:,,,/Panacea;component/Resources/Images/Icons/tapcard.png"  -->
 
                 </Grid>
             </TabItem>
