@@ -117,6 +117,7 @@
     <Compile Include="ViewModels\RequestSignInViewModel.cs" />
     <Compile Include="ViewModels\SettingsControlViewModel.cs" />
     <Compile Include="ViewModels\SimplePopupViewModel.cs" />
+    <Compile Include="ViewModels\TopBarButtonViewModel.cs" />
     <Compile Include="ViewModels\UpdateAccountViewModel.cs" />
     <Compile Include="ViewModels\UpdateCredentialsViewModel.cs" />
     <Compile Include="ViewModels\WarningViewModel.cs" />
@@ -152,6 +153,9 @@
     </Compile>
     <Compile Include="Views\SimplePopup.xaml.cs">
       <DependentUpon>SimplePopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TopBarButton.xaml.cs">
+      <DependentUpon>TopBarButton.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UpdateAccount.xaml.cs">
       <DependentUpon>UpdateAccount.xaml</DependentUpon>
@@ -246,6 +250,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\SimplePopup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TopBarButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
