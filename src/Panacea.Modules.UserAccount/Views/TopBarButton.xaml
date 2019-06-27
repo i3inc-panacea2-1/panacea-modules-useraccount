@@ -17,7 +17,7 @@
     <StackPanel
         HorizontalAlignment="Right"
         Orientation="Horizontal"
-        TextElement.FontSize="{DynamicResource FontSize-Xx-Large}">
+        TextElement.FontSize="{DynamicResource FontSize-X-Large}">
 
         <Button
             Name="LoginButton"
