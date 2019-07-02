@@ -17,6 +17,7 @@ namespace Panacea.Modules.UserAccount.ViewModels
     {
         public RequestSignInViewModel(IUserAccountManager manager, TaskCompletionSource<bool> source, string text)
         {
+            _source = source;
             Text = text;
             CreateAccountCommand = new RelayCommand(async args =>
             {
@@ -30,9 +31,18 @@ namespace Panacea.Modules.UserAccount.ViewModels
                 source.SetResult(await manager.LoginAsync());
             });
         }
+
+        public override void Close()
+        {
+            base.Close();
+            _source.TrySetResult(false);
+        }
+
         public RelayCommand CreateAccountCommand { get; }
 
         public RelayCommand SignInCommand { get; }
+
+        private readonly TaskCompletionSource<bool> _source;
 
         public string Text { get; }
     }
