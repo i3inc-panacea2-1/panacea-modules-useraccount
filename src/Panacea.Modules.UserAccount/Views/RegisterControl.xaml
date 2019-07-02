@@ -83,7 +83,7 @@
                         controls:Material.Label="{multilinguality:Translate 'Security question',
                                                                             'UserAccount'}"
                         ItemsSource="{Binding Questions}"
-                        SelectedItem="{Binding Question}">
+                        SelectedItem="{Binding Question, Mode=TwoWay}">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Question}" />
