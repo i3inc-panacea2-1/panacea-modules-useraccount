@@ -8,8 +8,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:multilinguality="clr-namespace:Panacea.Multilinguality;assembly=Panacea.Multilinguality"
     xmlns:pc="clr-namespace:Panacea.Controls;assembly=Panacea.Controls"
-    d:DesignHeight="450"
-    d:DesignWidth="800"
+    d:DesignHeight="650"
+    d:DesignWidth="1300"
     Background="#f1f1f1"
     mc:Ignorable="d">
     <UserControl.Resources>
@@ -229,58 +229,43 @@
 
                                     </Grid.RowDefinitions>
 
-                                    <ScrollViewer
-                                        Grid.Row="0"
-                                        Margin="10"
-                                        HorizontalAlignment="Stretch"
-                                        PanningMode="VerticalOnly"
-                                        VerticalScrollBarVisibility="Auto">
-                                        <ItemsControl
-                                            Name="ServicesControl"
-                                            Grid.IsSharedSizeScope="True"
-                                            ItemsSource="{Binding Services}">
-                                            <ItemsControl.ItemTemplate>
-                                                <DataTemplate>
-                                                    <Grid>
-                                                        <Grid.ColumnDefinitions>
-                                                            <ColumnDefinition Width="auto" SharedSizeGroup="A" />
-                                                            <ColumnDefinition />
-                                                        </Grid.ColumnDefinitions>
-                                                        <TextBlock
-                                                            HorizontalAlignment="Right"
-                                                            VerticalAlignment="Stretch"
-                                                            FontWeight="Bold"
-                                                            Text="{Binding Name}" />
-                                                        <Grid Grid.Column="1">
-                                                            <Grid.RowDefinitions>
-                                                                <RowDefinition />
-                                                                <RowDefinition />
-                                                            </Grid.RowDefinitions>
-                                                            <TextBlock
-                                                                Margin="10,0,0,0"
-                                                                HorizontalAlignment="Left"
-                                                                Text="{Binding RemainingQuantityText.Text}"
-                                                                TextWrapping="Wrap" />
-                                                            <TextBlock
-                                                                Grid.Row="1"
-                                                                Margin="10,0,0,0"
-                                                                HorizontalAlignment="Left"
-                                                                Text="{Binding ExpiresText.Text}"
-                                                                TextWrapping="Wrap" />
-                                                        </Grid>
-                                                    </Grid>
-                                                </DataTemplate>
-                                            </ItemsControl.ItemTemplate>
-                                        </ItemsControl>
-                                    </ScrollViewer>
+                                    <ListView
+                                        Name="StackedServicesList"
+                                        Margin="3"
+                                        AlternationCount="2"
+                                        BorderThickness="0"
+                                        FontSize="{DynamicResource FontSize-Normal}"
+                                        Grid.IsSharedSizeScope="True"
+                                        ItemsSource="{Binding Path=StackedServices}"
+                                        ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                                        ScrollViewer.PanningMode="Both">
+
+                                        <ListView.View>
+                                            <GridView>
+
+                                                <GridViewColumn
+                                                    Width="Auto"
+                                                    DisplayMemberBinding="{Binding Path=Plugin}"
+                                                    Header="Name" />
+
+                                                <GridViewColumn
+                                                    Width="Auto"
+                                                    DisplayMemberBinding="{Binding Path=ExpirationDate, StringFormat=g}"
+                                                    Header="Expires" />
+
+
+                                            </GridView>
+                                        </ListView.View>
+
+                                    </ListView>
 
                                     <TextBlock
-                                        Grid.Row="1"
+                                        Grid.Row="0"
                                         VerticalAlignment="Center"
                                         Text="{multilinguality:Translate 'No service',
                                                                          'UserAccount'}"
                                         TextAlignment="Center"
-                                        Visibility="{Binding ElementName=ServicesControl, Path=HasItems, Converter={StaticResource ServicesControl}}" />
+                                        Visibility="{Binding HasServices, Converter={StaticResource ServicesControl}}" />
                                     <Button
                                         Grid.Row="2"
                                         Margin="5"
@@ -364,6 +349,8 @@
                                         </ListView.View>
 
                                     </ListView>
+
+                                    <!--  Visibility="{Binding AllowRefunds, Converter={StaticResource Converter}}"  -->
                                     <Button
                                         Name="RefundButton"
                                         Grid.Row="1"
@@ -372,7 +359,7 @@
                                         Command="{Binding RequestRefundCommand}"
                                         Content="{multilinguality:Translate 'Request refund',
                                                                             'UserAccount'}"
-                                        Visibility="{Binding AllowRefunds, Converter={StaticResource Converter}}" />
+                                        Visibility="Collapsed" />
                                 </Grid>
                             </Grid>
                         </pc:Card>

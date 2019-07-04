@@ -76,7 +76,7 @@ namespace Panacea.Modules.UserAccount.ViewModels
 
         public RelayCommand SignoutCommand { get; }
         public RelayCommand BuyServiceCommand { get; }
-        public RelayCommand ChangeInfoCommand{ get; }
+        public RelayCommand ChangeInfoCommand { get; }
         public RelayCommand ChangeCredentialsCommand { get; }
         public RelayCommand ResetPasswordCommand { get; }
         IBillingSettings _settings;
@@ -112,6 +112,18 @@ namespace Panacea.Modules.UserAccount.ViewModels
             }
         }
 
+
+        List<Service> _stackedServices;
+        public List<Service> StackedServices
+        {
+            get => _stackedServices;
+            set
+            {
+                _stackedServices = value;
+                OnPropertyChanged();
+            }
+        }
+
         IUser _user;
         public IUser User
         {
@@ -123,11 +135,13 @@ namespace Panacea.Modules.UserAccount.ViewModels
             }
         }
 
+        public bool HasServices { get; set; }
+
         public override async void Activate()
         {
-            if(_core.UserService.User.Id == null)
+            if (_core.UserService.User.Id == null)
             {
-                if(_core.TryGetUiManager(out IUiManager ui))
+                if (_core.TryGetUiManager(out IUiManager ui))
                 {
                     ui.GoBack();
                 }
@@ -141,11 +155,30 @@ namespace Panacea.Modules.UserAccount.ViewModels
         {
             Services = null;
             Ledgers = null;
+            StackedServices = new List<Service>();
             if (_core.TryGetBilling(out IBillingManager billing))
             {
                 var sett = await billing.GetSettingsAsync();
                 Settings = sett;
                 Services = await billing.GetActiveUserServicesAsync();
+
+                var plugins = Services.GroupBy(s => s.Plugin);
+
+                foreach (var pluginGroup in plugins)
+                {
+                    var sameType = pluginGroup.GroupBy(s => s.ServiceType);
+                    foreach (var group in sameType)
+                    {
+                        StackedServices.Add(new Service()
+                        {
+                            Plugin = group.First().Plugin,
+                            ExpirationDate = group.OrderByDescending(g => g.ExpirationDate).First().ExpirationDate
+                        });
+                    }
+                }
+                HasServices = StackedServices.Count > 0;
+                OnPropertyChanged(nameof(HasServices));
+
                 Ledgers = await billing.GetUserPurchaseHistoryAsync();
             }
         }

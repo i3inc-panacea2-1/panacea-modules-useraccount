@@ -78,7 +78,7 @@ namespace Panacea.Modules.UserAccount.ViewModels
                         }
                         catch(Exception ex)
                         {
-                            _ui.Toast(ex.Message));
+                            _ui.Toast(ex.Message);
                         }
                     });
                 }
