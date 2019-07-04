@@ -7,6 +7,7 @@ using Panacea.Mvvm;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -71,9 +72,13 @@ namespace Panacea.Modules.UserAccount.ViewModels
                                 return;
                             }
                         }
-                        catch
+                        catch(WebException)
                         {
                             _ui.Toast(new Translator("UserAccount").Translate("Unable to save new information due to network problems. Please try again later."));
+                        }
+                        catch(Exception ex)
+                        {
+                            _ui.Toast(ex.Message));
                         }
                     });
                 }

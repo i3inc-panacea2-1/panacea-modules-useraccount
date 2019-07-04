@@ -34,8 +34,13 @@ namespace Panacea.Modules.UserAccount.ViewModels
                 {
                     var src = new TaskCompletionSource<bool>();
                     var forgotPassViewModel = new ForgotPasswordViewModel(_core, src);
+                    _watingForAnotherTask = true;
                     ui.Navigate(forgotPassViewModel);
                     var res = await src.Task;
+                    if (_core.TryGetUiManager(out IUiManager ui2))
+                    {
+                        ui2.GoHome();
+                    }
                     source.SetResult(res);
                 }
                 else
@@ -63,19 +68,18 @@ namespace Panacea.Modules.UserAccount.ViewModels
                         ShowWarning("Please provide a password");
                         return;
                     }
-                    if (await DoWhileBusy(() => core.UserService.LoginAsync(Date, password)))
+                    if (await DoWhileBusy(() => core.UserService.LoginAsync(Date.Value, password)))
                     {
-                        source?.SetResult(true);
                         if (_core.TryGetUiManager(out IUiManager ui))
                         {
                             ui.GoHome();
                         }
+                        source?.SetResult(true);
                         return;
                     }
                     else
                     {
                         ShowWarning("Incorrect credentials");
-                        source?.SetResult(false);
                         return;
                     }
                 }
@@ -115,11 +119,11 @@ namespace Panacea.Modules.UserAccount.ViewModels
 
                 if (await DoWhileBusy(() => core.UserService.LoginAsync(Email, password)))
                 {
-                    source?.SetResult(true);
                     if (_core.TryGetUiManager(out IUiManager ui))
                     {
                         ui.GoHome();
                     }
+                    source?.SetResult(true);
                     return;
 
                 }
@@ -129,6 +133,11 @@ namespace Panacea.Modules.UserAccount.ViewModels
                     return;
                 }
             });
+        }
+
+        public override void Activate()
+        {
+            _watingForAnotherTask = false;
         }
 
         public override void Deactivate()
@@ -159,7 +168,7 @@ namespace Panacea.Modules.UserAccount.ViewModels
 
         public string Email { get; set; }
 
-        public DateTime Date { get; set; } = DateTime.Now;
+        public DateTime? Date { get; set; } = null;
 
         private readonly PanaceaServices _core;
         private readonly TaskCompletionSource<bool> _source;

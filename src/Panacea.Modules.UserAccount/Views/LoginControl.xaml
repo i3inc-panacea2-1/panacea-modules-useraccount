@@ -132,18 +132,15 @@
                             FontSize="{DynamicResource FontSize-Large}"
                             InputScope="Date"
                             IsReadOnly="True"
-                            Tag="{Binding Date}"
+                            Tag="{Binding Date, Mode=TwoWay}"
                             Text="{Binding RelativeSource={RelativeSource Self}, Path=Tag, StringFormat=D}" />
-
-
-
                         <PasswordBox
                             Name="passdob"
                             pcontrols:Material.Label="{multilinguality:Translate 'Password',
                                                                                  'UserAccount'}"
                             FontSize="{DynamicResource FontSize-Large}"
-                            InputScope="Number" 
-                            MaxLength="4"/>
+                            InputScope="Number"
+                            MaxLength="4" />
 
 
                         <Button
@@ -193,7 +190,7 @@
                                                                                  'UserAccount'}"
                             FontSize="{DynamicResource FontSize-Large}"
                             InputScope="Number"
-                            MaxLength="4"/>
+                            MaxLength="4" />
                         <Button
                             Name="btnLogin"
                             Grid.Column="1"

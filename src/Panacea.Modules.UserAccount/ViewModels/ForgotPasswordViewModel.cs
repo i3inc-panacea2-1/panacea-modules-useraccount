@@ -76,12 +76,12 @@ namespace Panacea.Modules.UserAccount.ViewModels
                 {
                     var fname = FirstName;
                     var lname = LastName;
-                    var dob = ((DateTime)DateOfBirth).ToString("yyyy-MM-dd");
+                    var dob = DateOfBirth?.ToString("yyyy-MM-dd");
                     var e_mail = Email;
                     var question = Question.Question;
                     var answer = Answer;
                     if (string.IsNullOrEmpty(FirstName) || string.IsNullOrEmpty(LastName)
-                        || Question == null || string.IsNullOrEmpty(Answer))
+                        || Question == null || string.IsNullOrEmpty(Answer) || string.IsNullOrEmpty(dob))
                     {
                         throw new Exception();
                     }
@@ -96,17 +96,17 @@ namespace Panacea.Modules.UserAccount.ViewModels
                                     "user_forgot_password/",
                                     postData: new List<KeyValuePair<string, string>>()
                                 {
-                        new KeyValuePair<string, string>("email", e_mail),
-                        new KeyValuePair<string, string>("security_question", question),
-                        new KeyValuePair<string, string>("security_answer", answer),
-                        new KeyValuePair<string, string>("date_of_birth", dob),
-                        new KeyValuePair<string, string>("first_name", fname),
-                        new KeyValuePair<string, string>("last_name", lname)
+                                    new KeyValuePair<string, string>("email", e_mail),
+                                    new KeyValuePair<string, string>("security_question", question),
+                                    new KeyValuePair<string, string>("security_answer", answer),
+                                    new KeyValuePair<string, string>("date_of_birth", dob),
+                                    new KeyValuePair<string, string>("first_name", fname),
+                                    new KeyValuePair<string, string>("last_name", lname)
                                 });
 
                                 if (response.Success)
                                 {
-                                    var res = await _core.UserService.LoginAsync(DateOfBirth, response.Result);
+                                    var res = await _core.UserService.LoginAsync(DateOfBirth.Value, response.Result);
                                     var passPopup = new NewPasswordViewModel(response.Result);
                                     await _ui.ShowPopup(passPopup, null, PopupType.Success);
                                     src.SetResult(true);
@@ -157,7 +157,7 @@ namespace Panacea.Modules.UserAccount.ViewModels
         public RelayCommand CancelCommand { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public DateTime DateOfBirth { get; set; }
+        public DateTime? DateOfBirth { get; set; } = null;
         public string DOBString { get; set; }
         public string Email { get; set; }
         public SecurityQuestion Question { get; set; }

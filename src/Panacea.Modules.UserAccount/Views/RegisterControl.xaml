@@ -10,6 +10,7 @@
     d:DesignHeight="450"
     d:DesignWidth="800"
     Background="white"
+    Loaded="UserControl_Loaded"
     mc:Ignorable="d">
     <Grid>
         <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible">
@@ -65,6 +66,7 @@
                     </Grid>
 
                     <TextBox
+                        Name="DateOfBirth"
                         Grid.Row="0"
                         Grid.Column="2"
                         Margin="20,0,0,0"
@@ -72,10 +74,13 @@
                         controls:Material.Label="{multilinguality:Translate 'Date of birth',
                                                                             'UserAccount'}"
                         IsReadOnly="True"
-                        Text="{Binding DateOfBirth}" />
+                        Tag="{Binding DateOfBirth, Mode=TwoWay}"
+                        Text="{Binding RelativeSource={RelativeSource Self}, Path=Tag, StringFormat=D}"
+                        InputScope="Date"/>
 
 
                     <ComboBox
+                        Name="SecurityQuestion"
                         Grid.Row="1"
                         Grid.Column="1"
                         Margin="3,0"
@@ -83,7 +88,8 @@
                         controls:Material.Label="{multilinguality:Translate 'Security question',
                                                                             'UserAccount'}"
                         ItemsSource="{Binding Questions}"
-                        SelectedItem="{Binding Question, Mode=TwoWay}">
+                        SelectedItem="{Binding Question, Mode=TwoWay}"
+                        SelectionChanged="ComboBox_SelectionChanged">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Question}" />
@@ -92,6 +98,7 @@
                     </ComboBox>
 
                     <TextBox
+                        Name="SecurityAnswer"
                         Grid.Row="1"
                         Grid.Column="2"
                         Margin="20,0"
@@ -109,7 +116,8 @@
                         controls:Material.Label="{multilinguality:Translate 'Telephone (optional)',
                                                                             'UserAccount'}"
                         MaxLength="15"
-                        Text="{Binding PhoneNumber}" />
+                        Text="{Binding PhoneNumber}" 
+                        PreviewTextInput="TextBox_PreviewTextInput"/>
                     <TextBox
                         Name="email"
                         Grid.Row="2"
@@ -118,7 +126,8 @@
                         VerticalContentAlignment="Center"
                         controls:Material.Label="{multilinguality:Translate 'Email (optional)',
                                                                             'UserAccount'}"
-                        MaxLength="80" />
+                        MaxLength="80"
+                        Text="{Binding Email}"/>
                     <Button
                         Grid.Row="3"
                         Grid.Column="2"

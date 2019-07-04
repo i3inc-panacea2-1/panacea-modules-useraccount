@@ -90,8 +90,8 @@ namespace Panacea.Modules.UserAccount.ViewModels
             }
         }
 
-        DateTime _dateOfBirth = new DateTime(1980, 1, 1);
-        public DateTime DateOfBirth
+        DateTime? _dateOfBirth = null;
+        public DateTime? DateOfBirth
         {
             get => _dateOfBirth;
             set
@@ -203,7 +203,7 @@ namespace Panacea.Modules.UserAccount.ViewModels
 
                 new KeyValuePair<string, string>("first_name", FirstName),
                 new KeyValuePair<string, string>("last_name", LastName),
-                new KeyValuePair<string, string>("date_of_birth", DateOfBirth.ToString("yyyy-MM-dd")),
+                new KeyValuePair<string, string>("date_of_birth", DateOfBirth?.ToString("yyyy-MM-dd")),
                 new KeyValuePair<string, string>("security_answer", Answer),
                 new KeyValuePair<string, string>("e_mail",Email),
                 new KeyValuePair<string, string>("phonenumber", PhoneNumber),
@@ -259,7 +259,7 @@ namespace Panacea.Modules.UserAccount.ViewModels
                         if (response.Success)
                         {
                             var details = response.Result;
-                            if(!await _core.UserService.LoginAsync(DateOfBirth, details.Password))
+                            if(!await _core.UserService.LoginAsync(DateOfBirth.Value, details.Password))
                             {
                                 throw new Exception("Login failed");
                             }
