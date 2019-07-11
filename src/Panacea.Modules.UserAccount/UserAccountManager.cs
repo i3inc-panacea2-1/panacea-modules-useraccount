@@ -22,6 +22,18 @@ namespace Panacea.Modules.UserAccount
         public async Task<bool> LogoutAsync(bool force = false)
         {
             if (_core.UserService.User.Id == null) return true;
+            if (!force)
+            {
+                var popup = new LogoutConfirmationViewModel();
+                if (_core.TryGetUiManager(out IUiManager uiMgnr))
+                {
+                    var ok = await uiMgnr.ShowPopup<bool>(popup);
+                    if (!ok)
+                    {
+                        return false;
+                    }
+                }
+            }
             if (_core.TryGetUiManager(out IUiManager ui))
             {
                 await ui.DoWhileBusy(() => _core.UserService.LogoutAsync());
