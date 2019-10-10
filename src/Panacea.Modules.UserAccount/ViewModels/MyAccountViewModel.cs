@@ -7,6 +7,7 @@ using Panacea.Modules.UserAccount.Views;
 using Panacea.Mvvm;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -113,8 +114,8 @@ namespace Panacea.Modules.UserAccount.ViewModels
         }
 
 
-        List<Service> _stackedServices;
-        public List<Service> StackedServices
+        ObservableCollection<Service> _stackedServices;
+        public ObservableCollection<Service> StackedServices
         {
             get => _stackedServices;
             set
@@ -155,7 +156,7 @@ namespace Panacea.Modules.UserAccount.ViewModels
         {
             Services = null;
             Ledgers = null;
-            StackedServices = new List<Service>();
+            StackedServices = new ObservableCollection<Service>();
             if (_core.TryGetBilling(out IBillingManager billing))
             {
                 var sett = await billing.GetSettingsAsync();

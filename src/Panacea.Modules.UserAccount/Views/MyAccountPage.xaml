@@ -276,7 +276,7 @@
                                         Content="{multilinguality:Translate 'Buy service',
                                                                             'UserAccount'}"
                                         Style="{DynamicResource PrimaryButton}"
-                                        Visibility="{Binding ServicesVisible}" />
+                                        Visibility="{Binding HasServices, Converter={StaticResource ServicesControl}}" />
 
                                 </Grid>
                             </Grid>
